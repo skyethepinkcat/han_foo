@@ -1,4 +1,5 @@
 use wasm_bindgen::prelude::*;
+mod scores;
 
 // Called when the Wasm module is instantiated
 #[wasm_bindgen(start)]
