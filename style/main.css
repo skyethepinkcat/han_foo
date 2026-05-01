@@ -47,12 +47,18 @@ h3 {
 
 #front {
   backface-visibility: hidden;
+  position: absolute;
 }
 
 #back {
   font-size: 2em;
   backface-visibility: hidden;
   transform: rotateY(180deg);
+}
+
+#back.center {
+  position: absolute;
+  transform: rotateY(180deg) translate(50%, -50%);
 }
 
 #dealer {
