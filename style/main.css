@@ -1,0 +1,47 @@
+body {
+  margin: 40px auto;
+  max-width: 90vw;
+  line-height: 1.6;
+  font-size: 32px;
+  background: #eeeeee;
+  color: #454545;
+  padding: 0 10px;
+  text-align: center;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+}
+
+#card {
+  display: flex;
+  position: relative;
+  height: 80vh;
+  border: 3px solid green;
+  cursor: pointer;
+}
+
+#center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+#han_count {
+  font-size: 2em;
+}
+#fu_count {
+  font-size: 2em;
+}
+
+#result {
+  font-size: 2em;
+}
+.hidden {
+  display: none;
+}

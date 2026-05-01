@@ -1,2 +1,8 @@
 build:
-  cargo mommy build --target webpack
+  cargo mommy build
+test:
+  cargo mommy test
+pack:
+  wasm-pack build --target web
+serve: pack
+  miniserve .

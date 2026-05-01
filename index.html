@@ -2,15 +2,24 @@
 <html lang="en-US">
   <head>
     <meta charset="utf-8" />
-    <title>hello-wasm example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Han.Foo</title>
+    <link rel="stylesheet" href="style/main.css" />
   </head>
   <body>
+    <div id="card">
+      <div id="center">
+        <span id="front">
+          <span id="dealer">NON-DEALER</span> · <span id="win_type">TSUMO</span
+          ><br />
+          <span id="han_section"><span id="han_count">1</span>han</span>
+          <span id="fu_section"><span id="fu_count">30</span>fu</span></span
+        ><span id="back" style="hidden"></span>
+      </div>
+    </div>
     <script type="module">
-      import init, { greet } from "./pkg/han_foo.js";
-
-      init().then(() => {
-        greet("WebAssembly");
-      });
+      import start from "./pkg/han_foo.js";
+      start();
     </script>
   </body>
 </html>
