@@ -53,12 +53,14 @@ impl Card {
     }
     pub fn flip(&mut self) {
         if self.flipped {
-            self.back.hide();
-            self.front.show();
+            self.root.class_list().remove_1("flip").unwrap();
+            // self.back.hide();
+            // self.front.show();
             self.flipped = false;
         } else {
-            self.front.hide();
-            self.back.show();
+            // self.front.hide();
+            // self.back.show();
+            self.root.class_list().add_1("flip").unwrap();
             self.flipped = true;
         }
     }
@@ -119,10 +121,10 @@ impl Back {
 pub trait CardSide {
     fn root(&mut self) -> &mut HtmlElement;
     fn hide(&mut self) {
-        self.root().set_hidden(true);
+        self.root().class_list().add_1("hidden").unwrap();
     }
     fn show(&mut self) {
-        self.root().set_hidden(false);
+        self.root().class_list().remove_1("hidden").unwrap();
     }
 }
 
@@ -159,7 +161,7 @@ impl State {
         };
 
         s.card.update(s.score, s.dealer, s.tsumo);
-        s.card.back.hide();
+        // s.card.back.hide();
 
         s
     }

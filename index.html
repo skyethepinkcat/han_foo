@@ -1,26 +1,34 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-US">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Han.Foo</title>
-  <link rel="stylesheet" href="style/main.css">
-</head>
-<body>
-  <div id="card">
-    <div id="center">
-      <div id="front">
-        <span id="top"><span id="dealer">NON-DEALER</span> · <span id="win_type">TSUMO</span></span><br>
-        <span id="bottom"><span id="han_section"><span id="han_count">1</span>han</span> <span id="fu_section"><span id="fu_count">30</span>fu</span></span>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Han.Foo</title>
+    <link rel="stylesheet" href="style/main.css" />
+  </head>
+  <body>
+    <div class="center">
+    <div id="card">
+      <div class="center">
+        <div id="front">
+          <span id="top"
+            ><span id="dealer">NON-DEALER</span> ·
+            <span id="win_type">TSUMO</span></span
+          ><br />
+          <span id="bottom"
+            ><span id="han_section"><span id="han_count">1</span>han</span>
+            <span id="fu_section"><span id="fu_count">30</span>fu</span></span
+          >
+        </div>
+        <div id="back">
+          <span id="points"></span>
+        </div>
       </div>
-      <div id="back">
-        <span id="points"></span>
-      </div>
-      <script type="module">
-          import start from "./pkg/han_foo.js";
-          start();
-      </script>
     </div>
-  </div>
-</body>
+    </div>
+<script type="module">
+  import start from "./pkg/han_foo.js";
+  start();
+  </script>
+  </body>
 </html>

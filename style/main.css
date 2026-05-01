@@ -19,11 +19,17 @@ h3 {
   display: flex;
   position: relative;
   height: 80vh;
-  border: 3px solid green;
   cursor: pointer;
+  background: #ffffff;
+  box-shadow: 5px 5px 3px;
+  border-radius: 15px;
+  width: 40vw;
+  max-height: 800px;
+  max-width: 1200px;
+  transition: transform 2s ease;
+  transform-style: preserve-3d;
 }
-
-#center {
+.center {
   margin: 0;
   position: absolute;
   top: 50%;
@@ -39,10 +45,20 @@ h3 {
   font-size: 2em;
 }
 
+#front {
+  backface-visibility: hidden;
+}
+
 #back {
   font-size: 2em;
+  backface-visibility: hidden;
+  transform: rotateY(180deg);
 }
 
 #dealer {
-  color: #464646
+  color: #464646;
+}
+.flip {
+  transform: rotateY(180deg);
+
 }
