@@ -1,3 +1,5 @@
+use std::{cell::RefCell, rc::Rc};
+
 use rand::prelude::*;
 use wasm_bindgen::prelude::*;
 
@@ -5,13 +7,9 @@ mod han_foo;
 mod web;
 
 use han_foo as hf;
-use web_sys::{HtmlDocument, HtmlElement};
+use web_sys::{HtmlDocument, HtmlElement, MouseEvent};
 
 static DEFAULT_PARAM: f32 = 0.5;
-
-const FU_VALS: [u32; 12] = [20, 25, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120];
-
-const HAN_VALS: [u32; 13] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 
 /// Gets an HTML element by its ID from an HTML document.
 ///
@@ -27,6 +25,7 @@ fn get_html_element(document: &HtmlDocument, id: &str) -> Result<HtmlElement, Js
 }
 
 struct Card {
+    root: HtmlElement,
     flipped: bool,
     back: Back,
     front: Front,
@@ -35,12 +34,10 @@ struct Card {
 impl Card {
     pub fn new(document: web_sys::HtmlDocument) -> Self {
         Card {
+            root: get_html_element(&document, "card").unwrap(),
             back: Back {
-                root: document
-                    .get_element_by_id("back")
-                    .unwrap()
-                    .dyn_into()
-                    .unwrap(),
+                root: get_html_element(&document, "back").unwrap(),
+                points: get_html_element(&document, "points").unwrap(),
             },
             flipped: false,
             front: Front {
@@ -58,16 +55,18 @@ impl Card {
         if self.flipped {
             self.back.hide();
             self.front.show();
+            self.flipped = false;
         } else {
             self.front.hide();
             self.back.show();
+            self.flipped = true;
         }
     }
-    fn update(&mut self, han_num: u32, fu_num: u32, dealer: bool, tsumo: bool) {
-        self.front.update(han_num,fu_num,dealer,tsumo);
-        if self.flipped {
-            self.flip();
-        }
+
+    fn update(&mut self, score: hf::Score, dealer: bool, tsumo: bool) {
+        self.front.update(score.han, score.fu, dealer, tsumo);
+        self.back
+            .update(&score.points(tsumo, dealer, true).unwrap().to_string())
     }
 }
 
@@ -108,13 +107,13 @@ impl Front {
     }
 }
 
-
 struct Back {
     root: HtmlElement,
+    points: HtmlElement,
 }
 impl Back {
     fn update(&self, string: &str) {
-        self.root.set_text_content(Some(string));
+        self.points.set_text_content(Some(string));
     }
 }
 pub trait CardSide {
@@ -140,7 +139,6 @@ impl CardSide for Back {
 
 struct State {
     card: Card,
-    flipped: bool,
     score: hf::Score,
     tsumo: bool,
     dealer: bool,
@@ -151,23 +149,38 @@ struct State {
 impl State {
     pub fn new(document: web_sys::HtmlDocument, random_param: f32) -> Self {
         let mut rng = rand::rng();
-        Self {
+        let mut s = Self {
             card: Card::new(document),
             dealer: rng.random_bool(0.5),
             tsumo: rng.random_bool(0.5),
-            flipped: false,
             score: hf::random_score(&mut rng, random_param),
             random_param: random_param,
             rng: rng,
-        }
+        };
+
+        s.card.update(s.score, s.dealer, s.tsumo);
+        s.card.back.hide();
+
+        s
     }
     pub fn generate(&mut self) {
         self.dealer = self.rng.random_bool(0.5);
         self.tsumo = self.rng.random_bool(0.5);
-        self.flipped = false;
         self.score = hf::random_score(&mut self.rng, self.random_param);
-        self.card.front.update(self.score.han, self.score.fu, self.dealer, self.tsumo);
+        self.card.update(self.score, self.dealer, self.tsumo);
     }
+}
+
+fn make_click_handler(state: Rc<RefCell<State>>) -> Closure<dyn FnMut(MouseEvent)> {
+    Closure::new(move |_event| {
+        let mut state = state.borrow_mut();
+        if state.card.flipped {
+            state.generate();
+            state.card.flip();
+        } else {
+            state.card.flip();
+        }
+    })
 }
 
 // Called when the Wasm module is instantiated
@@ -180,53 +193,16 @@ fn start() -> Result<(), JsValue> {
         .dyn_into::<HtmlDocument>()
         .unwrap();
 
-    let mut state = State::new(document, DEFAULT_PARAM);
+    let state = Rc::new(RefCell::new(State::new(document, DEFAULT_PARAM)));
 
-    // Use `web_sys`'s global `window` function to get a handle on the global
-    // window object.
+    state.borrow_mut().generate();
 
-    let card = document.get_element_by_id("card").unwrap();
-    let result = document.get_element_by_id("result").unwrap();
-    let question = document.get_element_by_id("question").unwrap();
-    let han_elem = document.get_element_by_id("han_count").unwrap();
-    let fu_elem = document.get_element_by_id("fu_count").unwrap();
-    let tsumo_elem = document.get_element_by_id("win_type").unwrap();
-    let dealer_elem = document.get_element_by_id("dealer").unwrap();
-    let fu_section = document.get_element_by_id("fu_section").unwrap();
-
-    let closure = Closure::<dyn FnMut(_)>::new(move |_event: web_sys::MouseEvent| {
-        if state.flipped {
-            let rand_tsumo = rng.random_bool(0.5);
-            let rand_dealer = rng.random_bool(0.5);
-            state.score = hf::random_score(&mut state.rng, 0.5);
-            state.flipped = false;
-            han_elem.set_text_content(Some(&state.score.han.to_string()));
-            fu_elem.set_text_content(Some(&state.score.fu.to_string()));
-            dealer_elem.set_text_content(match rand_dealer {
-                true => Some("DEALER"),
-                false => Some("NON-DEALER"),
-            });
-            tsumo_elem.set_text_content(match rand_tsumo {
-                true => Some("TSUMO"),
-                false => Some("RON"),
-            });
-            fu_section.class_list().remove_1("hidden").unwrap();
-            if state.score.han >= 5 {
-                fu_section.class_list().add_1("hidden").unwrap();
-            }
-            result.class_list().add_1("hidden").unwrap();
-            question.class_list().remove_1("hidden").unwrap();
-        } else {
-            question.class_list().add_1("hidden").unwrap();
-            result.class_list().remove_1("hidden").unwrap();
-            result.set_text_content(Some(
-                &state.score.points(false, false, true).unwrap().to_string(),
-            ));
-            state.flipped = true;
-        }
-    });
-
-    card.add_event_listener_with_callback("click", closure.as_ref().unchecked_ref())?;
+    let closure = make_click_handler(Rc::clone(&state));
+    state
+        .borrow_mut()
+        .card
+        .root
+        .add_event_listener_with_callback("click", closure.as_ref().unchecked_ref())?;
 
     closure.forget();
 

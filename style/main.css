@@ -39,9 +39,10 @@ h3 {
   font-size: 2em;
 }
 
-#result {
+#back {
   font-size: 2em;
 }
-.hidden {
-  display: none;
+
+#dealer {
+  color: #464646
 }
