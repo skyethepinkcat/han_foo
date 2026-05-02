@@ -54,21 +54,20 @@ impl Card {
     pub fn flip(&mut self) {
         if self.flipped {
             self.root.class_list().remove_1("flip").unwrap();
-            // self.back.hide();
-            // self.front.show();
             self.flipped = false;
         } else {
-            // self.front.hide();
-            // self.back.show();
             self.root.class_list().add_1("flip").unwrap();
             self.flipped = true;
         }
     }
 
     fn update(&mut self, score: hf::Score, dealer: bool, tsumo: bool) {
-        self.front.update(score.han, score.fu, dealer, tsumo);
-        self.back
-            .update(&score.points(tsumo, dealer, true).unwrap().to_string())
+        if self.flipped {
+            self.front.update(score.han, score.fu, dealer, tsumo);
+        } else {
+            self.back
+                .update(&score.points(tsumo, dealer, true).unwrap().to_string())
+        }
     }
 }
 
@@ -161,7 +160,6 @@ impl State {
         };
 
         s.card.update(s.score, s.dealer, s.tsumo);
-        // s.card.back.hide();
 
         s
     }
@@ -169,7 +167,13 @@ impl State {
         self.dealer = self.rng.random_bool(0.5);
         self.tsumo = self.rng.random_bool(0.5);
         self.score = hf::random_score(&mut self.rng, self.random_param);
-        self.card.update(self.score, self.dealer, self.tsumo);
+        // Re-roll scores that aren't possible.
+        if self.score.fu == 20 && ! self.tsumo {
+            self.generate();
+        }
+        if self.score.fu == 25 && self.score.han == 2 && self.tsumo {
+            self.generate();
+        }
     }
 }
 
@@ -178,8 +182,19 @@ fn make_click_handler(state: Rc<RefCell<State>>) -> Closure<dyn FnMut(MouseEvent
         let mut state = state.borrow_mut();
         if state.card.flipped {
             state.generate();
+            state
+                .card
+                .front
+                .update(state.score.han, state.score.fu, state.dealer, state.tsumo);
             state.card.flip();
         } else {
+            state.card.back.update(
+                &state
+                    .score
+                    .points(state.tsumo, state.dealer, true)
+                    .unwrap()
+                    .to_string(),
+            );
             state.card.flip();
         }
     })
@@ -197,7 +212,7 @@ fn start() -> Result<(), JsValue> {
 
     let state = Rc::new(RefCell::new(State::new(document, DEFAULT_PARAM)));
 
-    state.borrow_mut().generate();
+    // state.borrow_mut().generate();
 
     let closure = make_click_handler(Rc::clone(&state));
     state
