@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Han.Foo</title>
     <link rel="stylesheet" href="style/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
   </head>
   <body>
+    <div class="header"><i class="fa fa-gear"></i></div>
     <div class="center">
       <div id="card">
         <div id="front" class="center">
@@ -15,8 +20,8 @@
             <span id="win_type">TSUMO</span></span
           ><br />
           <span id="bottom"
-            ><span id="han_section"><span id="han_count">1</span>han</span>
-            <span id="fu_section"><span id="fu_count">30</span>fu</span></span
+            ><span id="han_section"><span id="han_count">1</span>han</span
+            ><span id="fu_section"><span id="fu_count">30</span>fu</span></span
           >
         </div>
         <div id="back" class="center">
@@ -24,9 +29,14 @@
         </div>
       </div>
     </div>
-    <script type="module">
-      import start from "./pkg/han_foo.js";
-      start();
-    </script>
+    <div class="footer">
+      <a href="https://github.com/skyethepinkcat/han_foo"
+        ><i class="fa fa-github"></i
+      ></a>
+    </div>
   </body>
+  <script type="module">
+    import start from "./pkg/han_foo.js";
+    start();
+  </script>
 </html>

@@ -3,10 +3,12 @@ body {
   max-width: 90vw;
   line-height: 1.6;
   font-size: 32px;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Noto Sans", sans-serif;
   background: #eeeeee;
   color: #454545;
   padding: 0 10px;
-  text-align: center;
 }
 
 h1,
@@ -16,6 +18,8 @@ h3 {
 }
 
 #card {
+    text-align: center;
+
   display: flex;
   position: relative;
   height: 80vh;
@@ -23,11 +27,15 @@ h3 {
   background: #ffffff;
   box-shadow: 5px 5px 3px;
   border-radius: 15px;
-  width: 40vw;
+  width: 50vw;
   max-height: 800px;
-  max-width: 1200px;
-  transition: transform 2s ease;
+  height: 60vh;
+
+  transition: transform 600ms ease;
   transform-style: preserve-3d;
+}
+#bottom {
+  font-size: 1.5em;
 }
 .center {
   margin: 0;
@@ -43,6 +51,13 @@ h3 {
 }
 #fu_count {
   font-size: 2em;
+}
+
+@media (min-width: 600px) {
+  #fu_section::before {
+    content: " · ";
+    font-size: 2em;
+  }
 }
 
 #front {
@@ -61,10 +76,23 @@ h3 {
   transform: rotateY(180deg) translate(50%, -50%);
 }
 
-#dealer {
-  color: #464646;
-}
 .flip {
   transform: rotateY(180deg);
+}
 
+.footer {
+  position: fixed;
+  width: 90%;
+  bottom: 0;
+  text-align: right;
+}
+.fa {
+  color: grey;
+}
+
+.header {
+  position:fixed;
+  top: 0;
+  width: 90%;
+  text-align: right;
 }

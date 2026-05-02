@@ -7,7 +7,7 @@ mod han_foo;
 mod web;
 
 use han_foo as hf;
-use web_sys::{HtmlDocument, HtmlElement, MouseEvent};
+use web_sys::{HtmlDocument, HtmlElement, KeyboardEvent, MouseEvent};
 
 static DEFAULT_PARAM: f32 = 0.5;
 
@@ -32,22 +32,22 @@ struct Card {
 }
 
 impl Card {
-    pub fn new(document: web_sys::HtmlDocument) -> Self {
+    pub fn new(document: &web_sys::HtmlDocument) -> Self {
         Card {
-            root: get_html_element(&document, "card").unwrap(),
+            root: get_html_element(document, "card").unwrap(),
             back: Back {
-                root: get_html_element(&document, "back").unwrap(),
-                points: get_html_element(&document, "points").unwrap(),
+                root: get_html_element(document, "back").unwrap(),
+                points: get_html_element(document, "points").unwrap(),
             },
             flipped: false,
             front: Front {
-                dealer: get_html_element(&document, "dealer").unwrap(),
-                win_type: get_html_element(&document, "win_type").unwrap(),
-                root: get_html_element(&document, "front").unwrap(),
-                han_section: get_html_element(&document, "han_section").unwrap(),
-                han_num: get_html_element(&document, "han_count").unwrap(),
-                fu_section: get_html_element(&document, "fu_section").unwrap(),
-                fu_num: get_html_element(&document, "fu_count").unwrap(),
+                dealer: get_html_element(document, "dealer").unwrap(),
+                win_type: get_html_element(document, "win_type").unwrap(),
+                root: get_html_element(document, "front").unwrap(),
+                han_section: get_html_element(document, "han_section").unwrap(),
+                han_num: get_html_element(document, "han_count").unwrap(),
+                fu_section: get_html_element(document, "fu_section").unwrap(),
+                fu_num: get_html_element(document, "fu_count").unwrap(),
             },
         }
     }
@@ -145,7 +145,7 @@ struct State {
 }
 
 impl State {
-    pub fn new(document: web_sys::HtmlDocument, random_param: f32) -> Self {
+    pub fn new(document: &web_sys::HtmlDocument, random_param: f32) -> Self {
         let mut rng = rand::rng();
         let mut s = Self {
             card: Card::new(document),
@@ -178,25 +178,35 @@ impl State {
     }
 }
 
+fn flip_card(state: &Rc<RefCell<State>>) {
+    let mut state = state.borrow_mut();
+    if state.card.flipped {
+        state.generate();
+        state
+            .card
+            .front
+            .update(state.score.han, state.score.fu, state.dealer, state.tsumo);
+        state.card.flip();
+    } else {
+        state.card.back.update(
+            &state
+                .score
+                .points(state.tsumo, state.dealer, true)
+                .unwrap()
+                .to_string(),
+        );
+        state.card.flip();
+    }
+}
 fn make_click_handler(state: Rc<RefCell<State>>) -> Closure<dyn FnMut(MouseEvent)> {
     Closure::new(move |_event| {
-        let mut state = state.borrow_mut();
-        if state.card.flipped {
-            state.generate();
-            state
-                .card
-                .front
-                .update(state.score.han, state.score.fu, state.dealer, state.tsumo);
-            state.card.flip();
-        } else {
-            state.card.back.update(
-                &state
-                    .score
-                    .points(state.tsumo, state.dealer, true)
-                    .unwrap()
-                    .to_string(),
-            );
-            state.card.flip();
+        flip_card(&state);
+    })
+}
+fn make_keydown_handler(state: Rc<RefCell<State>>) -> Closure<dyn FnMut(KeyboardEvent)> {
+    Closure::<dyn FnMut(_)>::new(move |event: KeyboardEvent| {
+        if event.key() == " " {
+            flip_card(&state);
         }
     })
 }
@@ -211,18 +221,22 @@ fn start() -> Result<(), JsValue> {
         .dyn_into::<HtmlDocument>()
         .unwrap();
 
-    let state = Rc::new(RefCell::new(State::new(document, DEFAULT_PARAM)));
+    let state = Rc::new(RefCell::new(State::new(&document, DEFAULT_PARAM)));
 
     // state.borrow_mut().generate();
 
-    let closure = make_click_handler(Rc::clone(&state));
+    let click_closure = make_click_handler(Rc::clone(&state));
     state
         .borrow_mut()
         .card
         .root
-        .add_event_listener_with_callback("click", closure.as_ref().unchecked_ref())?;
+        .add_event_listener_with_callback("click", click_closure.as_ref().unchecked_ref())?;
 
-    closure.forget();
+    let key_closure = make_keydown_handler(Rc::clone(&state));
+    document.add_event_listener_with_callback("keydown", key_closure.as_ref().unchecked_ref())?;
+
+    click_closure.forget();
+    key_closure.forget();
 
     Ok(())
 }

@@ -46,7 +46,6 @@ pub fn random_score(rng: &mut impl Rng, param: f32) -> Score {
     }
 
     probs.last().unwrap().score
-
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, Copy)]
@@ -179,23 +178,6 @@ impl Score {
 
             Ok(resolved_points)
         }
-    }
-}
-
-pub fn score(han: u32, fu: u32) -> Score {
-    Score { han, fu }
-}
-pub fn get_ron(result: Result<RonOrTsumo, ()>) -> i32 {
-    match result.unwrap() {
-        RonOrTsumo::Ron(v) => v,
-        _ => panic!("Expected Ron"),
-    }
-}
-
-pub fn get_tsumo(result: Result<RonOrTsumo, ()>) -> [i32; 2] {
-    match result.unwrap() {
-        RonOrTsumo::Tsumo(v) => v,
-        _ => panic!("Expected Tsumo"),
     }
 }
 
