@@ -62,12 +62,9 @@ impl Card {
     }
 
     fn update(&mut self, score: hf::Score, dealer: bool, tsumo: bool) {
-        if self.flipped {
-            self.front.update(score.han, score.fu, dealer, tsumo);
-        } else {
-            self.back
-                .update(&score.points(tsumo, dealer, true).unwrap().to_string())
-        }
+        self.front.update(score.han, score.fu, dealer, tsumo);
+        self.back
+            .update(&score.points(tsumo, dealer, true).unwrap().to_string())
     }
 }
 
@@ -83,7 +80,7 @@ struct Front {
 
 impl Front {
     const DEALER_TEXT: &str = "DEALER";
-    const NON_DEALER_TEXT: &str = "NON-DEALER";
+    const NON_DEALER_TEXT: &str = "NON‑DEALER";
     const RON_TEXT: &str = "RON";
     const TSUMO_TEXT: &str = "TSUMO";
 
@@ -164,14 +161,18 @@ impl State {
         s
     }
     pub fn generate(&mut self) {
+        let last = self.score;
         self.dealer = self.rng.random_bool(0.5);
         self.tsumo = self.rng.random_bool(0.5);
         self.score = hf::random_score(&mut self.rng, self.random_param);
-        // Re-roll scores that aren't possible.
-        if self.score.fu == 20 && ! self.tsumo {
+        // Re-roll score if we got it last... Its no fun getting duplicates!
+        if self.score == last {
             self.generate();
         }
-        if self.score.fu == 25 && self.score.han == 2 && self.tsumo {
+        // Re-roll scores that aren't possible.
+        if self.score.fu == 20 && !self.tsumo {
+            self.generate();
+        } else if self.score.fu == 25 && self.score.han == 2 && self.tsumo {
             self.generate();
         }
     }

@@ -61,7 +61,7 @@ pub struct RawProbability {
     pub count: u32,
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone, Copy)]
+#[derive(Debug, Serialize, Deserialize, Clone, Copy, PartialEq)]
 pub struct Score {
     pub han: u32,
     pub fu: u32,
