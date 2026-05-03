@@ -10,6 +10,7 @@ use web_sys::{HtmlDocument, InputEvent, KeyboardEvent, MouseEvent, Node};
 #[cfg(target_arch = "wasm32")]
 use wasm_cookies;
 #[cfg(target_arch = "wasm32")]
+#[cfg(debug_assertions)]
 use web_sys::console;
 
 pub fn make_card_click_handler(state: Rc<RefCell<State>>) -> Closure<dyn FnMut(MouseEvent)> {

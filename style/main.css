@@ -6,7 +6,7 @@
 	--bg-canvas: light-dark(#eeeeee, #121212);
 	--text-main: light-dark(#303030, #f0f0f0);
 	/* --accent: light-dark(oklch(60% 0.15 250), oklch(75% 0.14 250)); */
-	--card-bg: light-dark(#ffffff, rgba(255, 255, 255, 0.05));
+	--card-bg: light-dark(#ffffff, #1f1f1f);
 }
 
 body {

@@ -13,6 +13,7 @@ use crate::han_foo::Agari;
 pub static DEFAULT_PARAM: f32 = 0.5;
 
 #[cfg(target_arch = "wasm32")]
+#[cfg(debug_assertions)]
 use web_sys::console;
 
 #[macro_export]

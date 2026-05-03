@@ -5,6 +5,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::debug_log;
 #[cfg(target_arch = "wasm32")]
+#[cfg(debug_assertions)]
 use web_sys::console;
 
 
