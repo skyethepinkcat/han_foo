@@ -1,11 +1,14 @@
 use std::{cell::RefCell, rc::Rc};
 
-mod gui;
 mod han_foo;
-use gui::*;
+mod web;
+use serde_json::json;
 use wasm_bindgen::prelude::*;
+use web::*;
 
 use web_sys::{HtmlDocument, HtmlElement, InputEvent, KeyboardEvent, MouseEvent, Node, console};
+
+use wasm_cookies;
 
 pub fn make_card_click_handler(state: Rc<RefCell<State>>) -> Closure<dyn FnMut(MouseEvent)> {
     Closure::new(move |_event| {
@@ -59,6 +62,7 @@ pub fn make_options_click_handler(state: Rc<RefCell<State>>) -> Closure<dyn FnMu
 // Called when the Wasm module is instantiated
 #[wasm_bindgen(start)]
 fn start() -> Result<(), JsValue> {
+    console_error_panic_hook::set_once();
     let window = web_sys::window().expect("no global `window` exists");
     let document = window
         .document()
@@ -67,6 +71,21 @@ fn start() -> Result<(), JsValue> {
         .unwrap();
 
     let state = Rc::new(RefCell::new(State::new(&document)));
+
+    {
+        let mut state = state.borrow_mut();
+        match wasm_cookies::get("options") {
+            Some(t) => {
+                match serde_json::from_str::<Options>(&t.unwrap()) {
+                    Ok(o) => {
+                        state.set_options(o);
+                    }
+                    Err(_) => {}
+                };
+            }
+            None => {}
+        };
+    }
 
     // state.borrow_mut().generate();
 

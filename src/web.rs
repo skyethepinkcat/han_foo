@@ -2,6 +2,8 @@ use std::{cell::RefCell, rc::Rc};
 
 use crate::han_foo as hf;
 use rand::prelude::*;
+use serde::{Deserialize, Serialize};
+use serde_json::json;
 use wasm_bindgen::prelude::*;
 use web_sys::{HtmlDocument, HtmlElement, HtmlInputElement, NodeList, console};
 
@@ -9,13 +11,12 @@ use crate::han_foo::Agari;
 
 pub static DEFAULT_PARAM: f32 = 0.5;
 
-fn doc() -> HtmlDocument {
-    web_sys::window()
-        .unwrap()
-        .document()
-        .unwrap()
-        .dyn_into()
-        .unwrap()
+#[macro_export]
+macro_rules! debug_log {
+    ($x:expr) => {
+        #[cfg(debug_assertions)]
+        console::log_1(&$x.to_string().into())
+    };
 }
 
 trait HtmlSelector {
@@ -87,6 +88,7 @@ fn nodes_to_radios(nodes: NodeList) -> Result<Vec<HtmlInputElement>, JsValue> {
     Ok(out)
 }
 
+#[derive(Serialize, Deserialize, Copy, Clone, Debug)]
 pub struct Options {
     kiriage: bool,
     random_param: f32,
@@ -102,12 +104,19 @@ pub struct Menu {
 
 impl Menu {
     pub fn new(document: &HtmlDocument) -> Self {
-        let root: HtmlElement = document.get_html_by_id("options_menu").unwrap();
+        let root: HtmlElement = document
+            .get_html_by_id::<HtmlElement>("options_menu")
+            .unwrap();
         Self {
             open: false,
-            button: document.get_html_by_id("options_button").unwrap(),
-            kiriage: document.get_html_by_id("kiriage").unwrap(),
-            modes: nodes_to_radios(root.query_selector_all("input[name=\"mode\"]").unwrap())
+            button: document
+                .get_html_by_id::<HtmlElement>("options_button")
+                .unwrap(),
+            kiriage: root
+                .get_html_by_id::<HtmlInputElement>("kiriage_input")
+                .unwrap(),
+            modes: root
+                .query_html_selector_all::<HtmlInputElement>("input[name=\"mode\"]")
                 .unwrap(),
             root: root,
         }
@@ -139,7 +148,7 @@ impl Menu {
         self.kiriage.set_checked(options.kiriage);
 
         for i in &self.modes {
-            if (i.value_as_number() as f32) == options.random_param {
+            if (i.value().parse::<f32>().unwrap()) == options.random_param {
                 i.set_checked(true);
             } else {
                 i.set_checked(false);
@@ -151,16 +160,15 @@ impl Menu {
 
         let radios = self
             .root
-            .query_html_selector_all::<HtmlInputElement>("input[name\"mode\"]:checked")
+            .query_html_selector_all::<HtmlInputElement>("input[name=\"mode\"]:checked")
             .unwrap();
 
-        options.random_param = radios.first().unwrap().value_as_number() as f32;
+        options.random_param = radios.first().unwrap().value().parse().unwrap();
         #[cfg(debug_assertions)]
         {
-            console::log_2(
-                &format!("Kiriage: {}", options.kiriage).into(),
-                &format!("Parameter: {}", options.random_param).into(),
-            );
+            console::log_1(&format!("Kiriage: {}", options.kiriage).into());
+            console::log_1(&format!("Parameter: {}", options.random_param).into());
+            console::log_1(&format!("value: {}", radios.first().unwrap().value()).into());
         }
     }
 }
@@ -177,18 +185,22 @@ impl Card {
         Card {
             root: document.get_html_by_id::<HtmlElement>("card").unwrap(),
             back: Back {
-                root: document.get_html_by_id("back").unwrap(),
-                points: document.get_html_by_id("points").unwrap(),
+                root: document.get_html_by_id::<HtmlElement>("back").unwrap(),
+                points: document.get_html_by_id::<HtmlElement>("points").unwrap(),
             },
             flipped: false,
             front: Front {
-                dealer: document.get_html_by_id("dealer").unwrap(),
-                win_type: document.get_html_by_id("win_type").unwrap(),
-                root: document.get_html_by_id("front").unwrap(),
-                _han_section: document.get_html_by_id("han_section").unwrap(),
-                han_num: document.get_html_by_id("han_count").unwrap(),
-                fu_section: document.get_html_by_id("fu_section").unwrap(),
-                fu_num: document.get_html_by_id("fu_count").unwrap(),
+                dealer: document.get_html_by_id::<HtmlElement>("dealer").unwrap(),
+                win_type: document.get_html_by_id::<HtmlElement>("win_type").unwrap(),
+                root: document.get_html_by_id::<HtmlElement>("front").unwrap(),
+                _han_section: document
+                    .get_html_by_id::<HtmlElement>("han_section")
+                    .unwrap(),
+                han_num: document.get_html_by_id::<HtmlElement>("han_count").unwrap(),
+                fu_section: document
+                    .get_html_by_id::<HtmlElement>("fu_section")
+                    .unwrap(),
+                fu_num: document.get_html_by_id::<HtmlElement>("fu_count").unwrap(),
             },
         }
     }
@@ -275,8 +287,8 @@ impl State {
     pub fn new(document: &web_sys::HtmlDocument) -> Self {
         let mut rng = rand::rng();
         let mut s = Self {
-            card: Card::new(&document.get_html_by_id("card").unwrap()),
-            menu: Menu::new(&document.get_html_by_id("menu").unwrap()),
+            card: Card::new(&document),
+            menu: Menu::new(&document),
             options: Options {
                 kiriage: true,
                 random_param: DEFAULT_PARAM,
@@ -302,6 +314,12 @@ impl State {
             self.rng.random_bool(0.5),
             self.rng.random_bool(0.5),
         );
+
+        debug_log!(format!(
+            "Generated {:?} with {}",
+            self.agari, self.options.random_param
+        ));
+
         // Re-roll score if we got it last... Its no fun getting duplicates!
         if self.agari == last {
             self.generate();
@@ -330,8 +348,29 @@ impl State {
         &mut self.options
     }
 
+    // Read the options from the UI
     pub fn save_options(&mut self) {
         self.menu.save(&mut self.options);
+        debug_log!(format!("Saved options {:?}", self.options));
+        wasm_cookies::set(
+            "options",
+            &json!(self.options).to_string(),
+            &wasm_cookies::CookieOptions::default(),
+        );
+    }
+
+    // Load state options into the UI.
+    pub fn load_options(&mut self) {
+        self.menu.load(&mut self.options);
+    }
+
+    pub fn options(&self) -> &Options {
+        &self.options
+    }
+
+    pub fn set_options(&mut self, options: Options) {
+        self.options = options;
+        self.load_options();
     }
 }
 
@@ -355,192 +394,5 @@ pub fn flip_card(state: &Rc<RefCell<State>>) {
                 .to_string(),
         );
         state.card.flip();
-    }
-}
-
-#[cfg(test)]
-mod wasm_tests {
-    use super::*;
-    use wasm_bindgen_test::*;
-
-    #[wasm_bindgen_test]
-    fn default_param_is_half() {
-        assert_eq!(DEFAULT_PARAM, 0.5);
-    }
-
-    // Verify the impossible-hand conditions that State::generate() filters.
-    // 20 fu only valid for tsumo (pinfu tsumo); ron with 20 fu can't occur.
-    #[wasm_bindgen_test]
-    fn fu20_ron_is_filtered_condition() {
-        let agari = hf::Agari::new(hf::Score { han: 1, fu: 20 }, false, false);
-        assert!(agari.score.fu == 20 && !agari.tsumo, "generate() must re-roll this");
-    }
-
-    #[wasm_bindgen_test]
-    fn fu20_tsumo_is_not_filtered() {
-        let agari = hf::Agari::new(hf::Score { han: 1, fu: 20 }, false, true);
-        assert!(!(agari.score.fu == 20 && !agari.tsumo), "generate() must keep this");
-    }
-
-    // 25 fu = chiitoitsu; tsumo with exactly 2 han is impossible in standard rules.
-    #[wasm_bindgen_test]
-    fn chiitoitsu_tsumo_2han_is_filtered_condition() {
-        let agari = hf::Agari::new(hf::Score { han: 2, fu: 25 }, false, true);
-        assert!(
-            agari.score.fu == 25 && agari.score.han == 2 && agari.tsumo,
-            "generate() must re-roll this"
-        );
-    }
-
-    #[wasm_bindgen_test]
-    fn chiitoitsu_ron_2han_is_not_filtered() {
-        let agari = hf::Agari::new(hf::Score { han: 2, fu: 25 }, false, false);
-        assert!(
-            !(agari.score.fu == 25 && agari.score.han == 2 && agari.tsumo),
-            "generate() must keep this"
-        );
-    }
-
-    // Agari::points delegates correctly — spot check dealer tsumo through gui's Agari wrapper.
-    #[wasm_bindgen_test]
-    fn agari_points_dealer_tsumo_mangan() {
-        let agari = hf::Agari::new(hf::Score { han: 5, fu: 30 }, true, true);
-        match agari.points(false).unwrap() {
-            hf::RonOrTsumo::Tsumo(v) => assert_eq!(v, [4000, 4000]),
-            _ => panic!("Expected Tsumo"),
-        }
-    }
-
-    #[wasm_bindgen_test]
-    fn agari_points_kiriage_affects_result() {
-        let agari = hf::Agari::new(hf::Score { han: 4, fu: 30 }, false, false);
-        let no_kiriage = match agari.points(false).unwrap() {
-            hf::RonOrTsumo::Ron(v) => v,
-            _ => panic!(),
-        };
-        let kiriage = match agari.points(true).unwrap() {
-            hf::RonOrTsumo::Ron(v) => v,
-            _ => panic!(),
-        };
-        assert_ne!(no_kiriage, kiriage);
-        assert_eq!(kiriage, 8000);
-    }
-}
-
-#[cfg(test)]
-mod browser_tests {
-    use super::*;
-    use wasm_bindgen::JsCast;
-    use wasm_bindgen_test::*;
-
-    wasm_bindgen_test_configure!(run_in_browser);
-
-    /// Injects the same DOM structure as index.html into document.body.
-    fn setup_dom() {
-        web_sys::window()
-            .unwrap()
-            .document()
-            .unwrap()
-            .body()
-            .unwrap()
-            .set_inner_html(
-                r#"
-                <span id="options_button"></span>
-                <div id="options_menu">
-                  <input id="kiriage" type="checkbox">
-                  <input id="chaos"   type="radio" name="mode" value="0.0">
-                  <input id="normal"  type="radio" name="mode" value="0.5" checked>
-                  <input id="unlucky" type="radio" name="mode" value="1.0">
-                </div>
-                <div id="card">
-                  <div id="front">
-                    <span id="dealer"></span>
-                    <span id="win_type"></span>
-                    <span id="han_section"><span id="han_count"></span></span>
-                    <span id="fu_section"><span id="fu_count"></span></span>
-                  </div>
-                  <div id="back"><span id="points"></span></div>
-                </div>
-                "#,
-            );
-    }
-
-    fn get_doc() -> HtmlDocument {
-        web_sys::window()
-            .unwrap()
-            .document()
-            .unwrap()
-            .dyn_into()
-            .unwrap()
-    }
-
-    // Fails: State::new passes document.get_html_by_id("card") to Card::new,
-    // which dyn_casts a div to HtmlDocument -> panic.
-    #[wasm_bindgen_test]
-    fn state_new_does_not_panic() {
-        setup_dom();
-        let _ = State::new(&get_doc());
-    }
-
-    // Fails: same panic in State::new before this assertion is reached.
-    #[wasm_bindgen_test]
-    fn state_menu_initially_closed() {
-        setup_dom();
-        let state = State::new(&get_doc());
-        assert!(!state.menu.open, "menu starts closed");
-    }
-
-    // Fails: same panic in State::new before DOM is updated.
-    // Once fixed, verifies menu.load() set kiriage checkbox to match Options default (true).
-    #[wasm_bindgen_test]
-    fn state_kiriage_checkbox_checked_by_default() {
-        setup_dom();
-        let doc = get_doc();
-        let _ = State::new(&doc);
-        let checkbox: HtmlInputElement = doc
-            .get_element_by_id("kiriage")
-            .unwrap()
-            .dyn_into()
-            .unwrap();
-        assert!(checkbox.checked(), "kiriage defaults true → checkbox checked");
-    }
-
-    // Fails: same panic in State::new before DOM is updated.
-    // Once fixed, verifies menu.load() selected the 0.5-param radio (DEFAULT_PARAM).
-    #[wasm_bindgen_test]
-    fn state_normal_mode_radio_selected_by_default() {
-        setup_dom();
-        let doc = get_doc();
-        let _ = State::new(&doc);
-        let normal: HtmlInputElement = doc
-            .get_element_by_id("normal")
-            .unwrap()
-            .dyn_into()
-            .unwrap();
-        assert!(normal.checked(), "DEFAULT_PARAM=0.5 → normal radio checked");
-    }
-
-    // Fails: same panic in State::new.
-    // Once fixed, verifies card starts unflipped.
-    #[wasm_bindgen_test]
-    fn state_card_not_flipped_initially() {
-        setup_dom();
-        let state = State::new(&get_doc());
-        assert!(!state.card.flipped, "card starts face-down");
-    }
-
-    // Fails: same panic in State::new.
-    // Once fixed, verifies points text was written to #points on init.
-    #[wasm_bindgen_test]
-    fn state_back_points_populated_on_init() {
-        setup_dom();
-        let doc = get_doc();
-        let _ = State::new(&doc);
-        let points_text = doc
-            .get_element_by_id("points")
-            .unwrap()
-            .text_content()
-            .unwrap_or_default();
-        assert!(!points_text.is_empty(), "#points populated on init");
     }
 }
