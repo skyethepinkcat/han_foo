@@ -173,7 +173,7 @@ input {
 	padding-left: 10px;
 }
 
-#mode>.option {
+#mode > .option {
 	justify-content: flex-start;
 	font-size: smaller;
 	padding-top: 0px;
@@ -185,6 +185,6 @@ input {
 .fa-question-circle {
 	transform: scale(0.75);
 }
-  .menu[hidden] {
-      display: none;
-  }
+.menu[hidden] {
+	display: none;
+}

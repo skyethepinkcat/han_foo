@@ -71,6 +71,7 @@ fn start() -> Result<(), JsValue> {
 
     let state = Rc::new(RefCell::new(State::new(&document)));
 
+    #[cfg(target_arch = "wasm32")]
     {
         let mut state = state.borrow_mut();
         match wasm_cookies::get("options") {

@@ -15,7 +15,12 @@ pub static DEFAULT_PARAM: f32 = 0.5;
 macro_rules! debug_log {
     ($x:expr) => {
         #[cfg(debug_assertions)]
-        console::log_1(&$x.to_string().into())
+        {
+            #[cfg(not(target_arch = "wasm32"))]
+            console::log_1(&$x.to_string().into());
+            #[cfg(not(target_arch = "wasm32"))]
+            eprintln!($x)
+        }
     };
 }
 
@@ -352,11 +357,14 @@ impl State {
     pub fn save_options(&mut self) {
         self.menu.save(&mut self.options);
         debug_log!(format!("Saved options {:?}", self.options));
-        wasm_cookies::set(
-            "options",
-            &json!(self.options).to_string(),
-            &wasm_cookies::CookieOptions::default(),
-        );
+        #[cfg(target_arch = "wasm32")]
+        {
+            wasm_cookies::set(
+                "options",
+                &json!(self.options).to_string(),
+                &wasm_cookies::CookieOptions::default(),
+            );
+        }
     }
 
     // Load state options into the UI.
