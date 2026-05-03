@@ -4,6 +4,9 @@ vim.lsp.config("rust_analyzer", {
 			cargo = {
 				target = "wasm32-unknown-unknown";
 			},
+			check = {
+				command = "clippy";
+			},
 		},
 	},
 })

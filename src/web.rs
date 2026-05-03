@@ -118,7 +118,7 @@ impl Menu {
             modes: root
                 .query_html_selector_all::<HtmlInputElement>("input[name=\"mode\"]")
                 .unwrap(),
-            root: root,
+            root,
         }
     }
 
@@ -287,8 +287,8 @@ impl State {
     pub fn new(document: &web_sys::HtmlDocument) -> Self {
         let mut rng = rand::rng();
         let mut s = Self {
-            card: Card::new(&document),
-            menu: Menu::new(&document),
+            card: Card::new(document),
+            menu: Menu::new(document),
             options: Options {
                 kiriage: true,
                 random_param: DEFAULT_PARAM,
@@ -298,7 +298,7 @@ impl State {
                 rng.random_bool(0.5),
                 rng.random_bool(0.5),
             ),
-            rng: rng,
+            rng,
         };
 
         s.card.update(s.agari, s.options.kiriage);
@@ -325,9 +325,9 @@ impl State {
             self.generate();
         }
         // Re-roll scores that aren't possible.
-        if self.agari.score.fu == 20 && !self.agari.tsumo {
-            self.generate();
-        } else if self.agari.score.fu == 25 && self.agari.score.han == 2 && self.agari.tsumo {
+        if (self.agari.score.fu == 20 && !self.agari.tsumo)
+            || self.agari.score.fu == 25 && self.agari.score.han == 2 && self.agari.tsumo
+        {
             self.generate();
         }
     }
@@ -365,7 +365,7 @@ impl State {
 
     // Load state options into the UI.
     pub fn load_options(&mut self) {
-        self.menu.load(&mut self.options);
+        self.menu.load(&self.options);
     }
 
     pub fn options(&self) -> &Options {

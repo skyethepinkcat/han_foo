@@ -1,7 +1,9 @@
-name: "Build legacy Nix package on Ubuntu"
+name: "Release"
 
 on:
   push:
+    tags:
+      - "v*"
 
 jobs:
   build:
@@ -10,4 +12,12 @@ jobs:
       - uses: actions/checkout@v2
       - uses: cachix/install-nix-action@v26
       - name: Building package
-        run: nix build 
+        run: nix build --no-link --print-out-paths > store_path.txt
+      - name: Package as tar.gz
+        run: |
+          STORE_PATH=$(cat store_path.txt)
+          tar -czf han_foo-${GITHUB_REF_NAME}.tar.gz -C "$STORE_PATH" .
+      - name: Upload to release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: han_foo-${{ github.ref_name }}.tar.gz

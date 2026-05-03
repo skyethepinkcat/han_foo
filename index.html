@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Han.Foo</title>
-    <link data-trunk rel="css" href="style/main.css" />
+    <link data-trunk rel="scss" href="style/main.scss" />
     <link data-trunk rel="rust" />
     <link
       rel="stylesheet"
@@ -13,24 +13,51 @@
   </head>
   <body>
     <div class="header">
-      <span class="clickable" id="options_button"><i class="fa fa-gear"></i></span>
+      <span class="clickable" id="options_button"
+        ><i class="fa fa-gear"></i
+      ></span>
       <div id="options_menu" class="menu shadow" hidden>
-        <div class="option" title="Enable kiriage mangan" id="kiriage"><input id="kiriage_input" type="checkbox"><label for="kiriage_input">Kiriage</label></div>
+        <div class="option" title="Enable kiriage mangan" id="kiriage">
+          <input id="kiriage_input" type="checkbox" /><label for="kiriage_input"
+            >Kiriage</label
+          >
+        </div>
         <fieldset id="mode">
-          <legend>Mode <i title="Sets how often uncommon scores appear." class="fa fa-question-circle"></i></legend>
+          <legend>
+            Mode
+            <i
+              title="Sets how often uncommon scores appear."
+              class="fa fa-question-circle"
+            ></i>
+          </legend>
           <div class="option" title="All are equal">
-          <input id="chaos" type="radio" name="mode" value=0.0><label for="chaos">Chaos</label></input>
+            <input id="chaos" type="radio" name="mode" value="0.0" /><label
+              for="chaos"
+              >Chaos</label
+            >
           </div>
           <div class="option" title="Decent balance">
-          <input id="normal" type="radio" name="mode" value=0.5 checked><label for="normal">Normal</label></input>
+            <input
+              id="normal"
+              type="radio"
+              name="mode"
+              value="0.5"
+              checked
+            /><label for="normal">Normal</label>
           </div>
           <div class="option" title="Raw Tenhou Stats">
-          <input id="realisitic" type="radio" name="mode" value=1.0><label for="realisitic">Realistic</label></input>
+            <input id="realisitic" type="radio" name="mode" value="1.0" /><label
+              for="realisitic"
+              >Realistic</label
+            >
           </div>
           <div class="option" title="Bullshit bullshit bullshit">
-          <input id="unlucky" type="radio" name="mode" value=2.0><label for="unlucky">Unlucky</label></input>
+            <input id="unlucky" type="radio" name="mode" value="2.0" /><label
+              for="unlucky"
+              >Unlucky</label
+            >
           </div>
-          </fieldset>
+        </fieldset>
       </div>
     </div>
     <div class="center">
@@ -57,7 +84,7 @@
     </div>
   </body>
   <script type="module">
-    import start from "./pkg/han_foo.js";
+    import start from "./han_foo.js";
     start();
   </script>
 </html>

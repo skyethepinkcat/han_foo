@@ -8,8 +8,6 @@ use web::*;
 use web_sys::{HtmlDocument, InputEvent, KeyboardEvent, MouseEvent, Node};
 
 #[cfg(target_arch = "wasm32")]
-use wasm_cookies;
-#[cfg(target_arch = "wasm32")]
 #[cfg(debug_assertions)]
 use web_sys::console;
 
@@ -54,9 +52,9 @@ pub fn make_options_click_handler(state: Rc<RefCell<State>>) -> Closure<dyn FnMu
         }
         let mut state = state.borrow_mut();
         let target_node: Option<Node> = event.target().and_then(|t| t.dyn_into::<Node>().ok());
-        if state.menu().button().contains(target_node.as_ref()) {
-            state.menu_mut().toggle();
-        } else if !state.menu().root().contains(target_node.as_ref()) && state.menu().open() {
+        if (state.menu().button().contains(target_node.as_ref()))
+            || (!state.menu().root().contains(target_node.as_ref()) && state.menu().open())
+        {
             state.menu_mut().toggle();
         }
     })
@@ -79,16 +77,10 @@ fn start() -> Result<(), JsValue> {
     #[cfg(target_arch = "wasm32")]
     {
         let mut state = state.borrow_mut();
-        match wasm_cookies::get("options") {
-            Some(t) => {
-                match serde_json::from_str::<Options>(&t.unwrap()) {
-                    Ok(o) => {
-                        state.set_options(o);
-                    }
-                    Err(_) => {}
-                };
-            }
-            None => {}
+        if let Some(t) = wasm_cookies::get("options")
+            && let Ok(o) = serde_json::from_str::<Options>(&t.unwrap())
+        {
+            state.set_options(o);
         };
     }
 

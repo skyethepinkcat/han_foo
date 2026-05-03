@@ -1,4 +1,4 @@
-use std::sync::LazyLock;
+use std::{fmt::Display, sync::LazyLock};
 
 use rand::prelude::*;
 use serde::{Deserialize, Serialize};
@@ -8,8 +8,7 @@ use crate::debug_log;
 #[cfg(debug_assertions)]
 use web_sys::console;
 
-
-static RAW_SCORES_STRING: &str = include_str!("../data/score_probabilities.json");
+static RAW_SCORES_STRING: &str = include_str!("../assets/score_probabilities.json");
 static RAW_PROBABILITIES: LazyLock<Vec<RawProbability>> =
     LazyLock::new(|| serde_json::from_str(RAW_SCORES_STRING).unwrap());
 
@@ -102,15 +101,19 @@ pub enum RonOrTsumo {
     Tsumo([i32; 2]),
 }
 
-impl ToString for RonOrTsumo {
-    fn to_string(&self) -> String {
-        match self {
-            RonOrTsumo::Ron(r) => r.to_string(),
-            RonOrTsumo::Tsumo(t) => match t[0] == t[1] {
-                true => format!("{}\u{00A0}all", t[0]),
-                false => format!("{}/{}", t[0], t[1]),
-            },
-        }
+impl Display for RonOrTsumo {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(
+            f,
+            "{}",
+            match self {
+                RonOrTsumo::Ron(r) => r.to_string(),
+                RonOrTsumo::Tsumo(t) => match t[0] == t[1] {
+                    true => format!("{}\u{00A0}all", t[0]),
+                    false => format!("{}/{}", t[0], t[1]),
+                },
+            }
+        )
     }
 }
 
