@@ -83,16 +83,6 @@ impl HtmlSelector for HtmlElement {
     }
 }
 
-fn nodes_to_radios(nodes: NodeList) -> Result<Vec<HtmlInputElement>, JsValue> {
-    let mut out = vec![];
-    for i in 0..nodes.length() {
-        let node = nodes.get(i).unwrap();
-        let input: HtmlInputElement = node.dyn_into()?;
-        out.push(input);
-    }
-    Ok(out)
-}
-
 #[derive(Serialize, Deserialize, Copy, Clone, Debug)]
 pub struct Options {
     kiriage: bool,
