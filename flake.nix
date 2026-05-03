@@ -53,6 +53,7 @@
                 miniserve
                 vscode-css-languageserver
                 geckodriver
+                trunk
               ];
               RUST_SRC_PATH = rustPlatform.rustLibSrc;
             };
