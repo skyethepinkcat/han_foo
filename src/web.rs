@@ -3,23 +3,27 @@ use std::{cell::RefCell, rc::Rc};
 use crate::han_foo as hf;
 use rand::prelude::*;
 use serde::{Deserialize, Serialize};
+#[cfg(target_arch = "wasm32")]
 use serde_json::json;
 use wasm_bindgen::prelude::*;
-use web_sys::{HtmlDocument, HtmlElement, HtmlInputElement, NodeList, console};
+use web_sys::{HtmlDocument, HtmlElement, HtmlInputElement};
 
 use crate::han_foo::Agari;
 
 pub static DEFAULT_PARAM: f32 = 0.5;
+
+#[cfg(target_arch = "wasm32")]
+use web_sys::console;
 
 #[macro_export]
 macro_rules! debug_log {
     ($x:expr) => {
         #[cfg(debug_assertions)]
         {
+            #[cfg(target_arch = "wasm32")]
+            console::log_1(&($x).to_string().into());
             #[cfg(not(target_arch = "wasm32"))]
-            console::log_1(&$x.to_string().into());
-            #[cfg(not(target_arch = "wasm32"))]
-            eprintln!($x)
+            eprintln!("{}", $x)
         }
     };
 }
@@ -161,9 +165,9 @@ impl Menu {
         options.random_param = radios.first().unwrap().value().parse().unwrap();
         #[cfg(debug_assertions)]
         {
-            console::log_1(&format!("Kiriage: {}", options.kiriage).into());
-            console::log_1(&format!("Parameter: {}", options.random_param).into());
-            console::log_1(&format!("value: {}", radios.first().unwrap().value()).into());
+            debug_log!(format!("Kiriage: {}", options.kiriage));
+            debug_log!(format!("Parameter: {}", options.random_param));
+            debug_log!(format!("value: {}", radios.first().unwrap().value()));
         }
     }
 }
@@ -346,9 +350,10 @@ impl State {
     // Read the options from the UI
     pub fn save_options(&mut self) {
         self.menu.save(&mut self.options);
-        debug_log!(format!("Saved options {:?}", self.options));
+
         #[cfg(target_arch = "wasm32")]
         {
+            debug_log!(format!("Saved options {:?}", self.options));
             wasm_cookies::set(
                 "options",
                 &json!(self.options).to_string(),

@@ -4,6 +4,8 @@ use rand::prelude::*;
 use serde::{Deserialize, Serialize};
 
 use crate::debug_log;
+#[cfg(target_arch = "wasm32")]
+use web_sys::console;
 
 
 static RAW_SCORES_STRING: &str = include_str!("../data/score_probabilities.json");

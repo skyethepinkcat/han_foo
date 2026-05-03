@@ -5,15 +5,18 @@ mod web;
 use wasm_bindgen::prelude::*;
 use web::*;
 
-use web_sys::{HtmlDocument, InputEvent, KeyboardEvent, MouseEvent, Node, console};
+use web_sys::{HtmlDocument, InputEvent, KeyboardEvent, MouseEvent, Node};
 
+#[cfg(target_arch = "wasm32")]
 use wasm_cookies;
+#[cfg(target_arch = "wasm32")]
+use web_sys::console;
 
 pub fn make_card_click_handler(state: Rc<RefCell<State>>) -> Closure<dyn FnMut(MouseEvent)> {
     Closure::new(move |_event| {
         #[cfg(debug_assertions)]
         {
-            console::log_1(&"Card Clicked!".to_string().into());
+            debug_log!("Card Clicked!");
         }
         flip_card(&state);
     })
@@ -23,7 +26,7 @@ pub fn make_space_handler(state: Rc<RefCell<State>>) -> Closure<dyn FnMut(Keyboa
     Closure::<dyn FnMut(_)>::new(move |event: KeyboardEvent| {
         #[cfg(debug_assertions)]
         {
-            console::log_1(&"Spacebar Hit!".to_string().into());
+            debug_log!(&"Spacebar Hit!");
         }
         if event.key() == " " {
             flip_card(&state);
@@ -35,7 +38,7 @@ pub fn make_options_handler(state: Rc<RefCell<State>>) -> Closure<dyn FnMut(Inpu
     Closure::<dyn FnMut(_)>::new(move |_event: InputEvent| {
         #[cfg(debug_assertions)]
         {
-            console::log_1(&"Input Event!".to_string().into());
+            debug_log!(&"Input Event!".to_string());
         }
         let mut state = state.borrow_mut();
         state.save_options();
@@ -46,7 +49,7 @@ pub fn make_options_click_handler(state: Rc<RefCell<State>>) -> Closure<dyn FnMu
     Closure::<dyn FnMut(_)>::new(move |event: MouseEvent| {
         #[cfg(debug_assertions)]
         {
-            console::log_1(&"Click away logic!".to_string().into());
+            debug_log!("Click away logic!");
         }
         let mut state = state.borrow_mut();
         let target_node: Option<Node> = event.target().and_then(|t| t.dyn_into::<Node>().ok());
@@ -61,6 +64,7 @@ pub fn make_options_click_handler(state: Rc<RefCell<State>>) -> Closure<dyn FnMu
 // Called when the Wasm module is instantiated
 #[wasm_bindgen(start)]
 fn start() -> Result<(), JsValue> {
+    #[cfg(target_arch = "wasm32")]
     console_error_panic_hook::set_once();
     let window = web_sys::window().expect("no global `window` exists");
     let document = window
@@ -115,7 +119,7 @@ fn start() -> Result<(), JsValue> {
 
     #[cfg(debug_assertions)]
     {
-        console::log_1(&"Starting with Debug Mode".to_string().into());
+        debug_log!("Starting with Debug Mode");
     }
     Ok(())
 }
