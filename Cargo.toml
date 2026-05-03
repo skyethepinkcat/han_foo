@@ -2,6 +2,8 @@
 name = "han_foo"
 version = "0.1.0"
 edition = "2024"
+[build]
+target = "wasm32-unknown-unknown"
 [lib]
 crate-type = ["cdylib"]
 

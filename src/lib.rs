@@ -2,11 +2,10 @@ use std::{cell::RefCell, rc::Rc};
 
 mod han_foo;
 mod web;
-use serde_json::json;
 use wasm_bindgen::prelude::*;
 use web::*;
 
-use web_sys::{HtmlDocument, HtmlElement, InputEvent, KeyboardEvent, MouseEvent, Node, console};
+use web_sys::{HtmlDocument, InputEvent, KeyboardEvent, MouseEvent, Node, console};
 
 use wasm_cookies;
 
