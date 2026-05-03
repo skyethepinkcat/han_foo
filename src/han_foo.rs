@@ -7,6 +7,30 @@ static RAW_SCORES_STRING: &str = include_str!("../data/score_probabilities.json"
 static RAW_PROBABILITIES: LazyLock<Vec<RawProbability>> =
     LazyLock::new(|| serde_json::from_str(RAW_SCORES_STRING).unwrap());
 
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub struct Agari {
+    pub score: Score,
+    pub dealer: bool,
+    pub tsumo: bool,
+}
+
+impl Agari {
+    /// Creates a new [`Agari`].
+    /// kiriage defaults to bool
+    pub fn new(score: Score, dealer: bool, tsumo: bool) -> Self {
+        Self {
+            score,
+            dealer,
+            tsumo,
+        }
+    }
+
+    pub fn points(&self, kiriage: bool) -> Result<RonOrTsumo,()> {
+        self.score.points(self.tsumo, self.dealer, kiriage)
+
+    }
+}
+
 // Returns a weighted list of scores and their probabilities.
 //
 // `param` will let you control how common or uncommon unlikely hands are.
@@ -77,7 +101,7 @@ impl ToString for RonOrTsumo {
         match self {
             RonOrTsumo::Ron(r) => r.to_string(),
             RonOrTsumo::Tsumo(t) => match t[0] == t[1] {
-                true => format!("{} all", t[0]),
+                true => format!("{}\u{00A0}all", t[0]),
                 false => format!("{}/{}", t[0], t[1]),
             },
         }
@@ -116,7 +140,7 @@ fn safe_mult(num: i32) -> i32 {
 impl Score {
     pub fn points(&self, tsumo: bool, dealer: bool, kiriage: bool) -> Result<RonOrTsumo, ()> {
         {
-            let fu_limit = match (kiriage) {
+            let fu_limit = match kiriage {
                 true => [30, 60],
                 false => [40, 70],
             };
@@ -342,10 +366,194 @@ mod tests {
     }
     #[test]
     fn test_dealer_tsumo_3han_40fu_string() {
-        assert_eq!(RonOrTsumo::Tsumo([2600, 2600]).to_string(), "2600 all")
+        assert_eq!(RonOrTsumo::Tsumo([2600, 2600]).to_string(), "2600\u{a0}all")
     }
     #[test]
     fn test_non_dealer_tsumo_3han_40fu_string() {
         assert_eq!(RonOrTsumo::Tsumo([1300, 2600]).to_string(), "1300/2600")
+    }
+}
+
+#[cfg(test)]
+mod wasm_tests {
+    use super::*;
+    use wasm_bindgen_test::*;
+
+    fn ron(result: Result<RonOrTsumo, ()>) -> i32 {
+        match result.unwrap() {
+            RonOrTsumo::Ron(v) => v,
+            _ => panic!("Expected Ron"),
+        }
+    }
+
+    fn tsumo(result: Result<RonOrTsumo, ()>) -> [i32; 2] {
+        match result.unwrap() {
+            RonOrTsumo::Tsumo(v) => v,
+            _ => panic!("Expected Tsumo"),
+        }
+    }
+
+    // --- get_probabilities ---
+
+    #[wasm_bindgen_test]
+    fn probabilities_nonempty() {
+        assert!(!get_probabilities(0.5).is_empty());
+    }
+
+    #[wasm_bindgen_test]
+    fn probabilities_param_zero_all_weights_one() {
+        for p in get_probabilities(0.0) {
+            assert_eq!(p.probability, 1.0, "param=0 => all weights 1.0");
+        }
+    }
+
+    #[wasm_bindgen_test]
+    fn probabilities_param_one_sum_greater_than_count() {
+        let probs = get_probabilities(1.0);
+        let sum: f32 = probs.iter().map(|p| p.probability).sum();
+        assert!(sum > probs.len() as f32, "raw counts sum > number of entries");
+    }
+
+    #[wasm_bindgen_test]
+    fn probabilities_higher_param_higher_sum() {
+        let s0 = get_probabilities(0.0).iter().map(|p| p.probability).sum::<f32>();
+        let s1 = get_probabilities(1.0).iter().map(|p| p.probability).sum::<f32>();
+        assert!(s1 > s0);
+    }
+
+    // --- random_score ---
+
+    #[wasm_bindgen_test]
+    fn random_score_stays_in_valid_range() {
+        let mut rng = rand::rng();
+        for _ in 0..50 {
+            let s = random_score(&mut rng, 0.5);
+            assert!(s.han >= 1, "han >= 1");
+            assert!(s.fu >= 20, "fu >= 20");
+            assert!(s.fu % 10 == 0 || s.fu == 25, "fu rounded or chiitoitsu");
+        }
+    }
+
+    #[wasm_bindgen_test]
+    fn random_score_param_zero_still_valid() {
+        let mut rng = rand::rng();
+        for _ in 0..20 {
+            let s = random_score(&mut rng, 0.0);
+            assert!(s.han >= 1);
+        }
+    }
+
+    // --- Score::points (wasm) ---
+
+    #[wasm_bindgen_test]
+    fn non_dealer_ron_3han_40fu() {
+        assert_eq!(ron(Score { han: 3, fu: 40 }.points(false, false, false)), 5200);
+    }
+
+    #[wasm_bindgen_test]
+    fn dealer_ron_3han_40fu() {
+        assert_eq!(ron(Score { han: 3, fu: 40 }.points(false, true, false)), 7700);
+    }
+
+    #[wasm_bindgen_test]
+    fn non_dealer_tsumo_3han_40fu() {
+        assert_eq!(tsumo(Score { han: 3, fu: 40 }.points(true, false, false)), [1300, 2600]);
+    }
+
+    #[wasm_bindgen_test]
+    fn dealer_tsumo_3han_40fu() {
+        assert_eq!(tsumo(Score { han: 3, fu: 40 }.points(true, true, false)), [2600, 2600]);
+    }
+
+    #[wasm_bindgen_test]
+    fn mangan_non_dealer_ron() {
+        assert_eq!(ron(Score { han: 5, fu: 30 }.points(false, false, false)), 8000);
+    }
+
+    #[wasm_bindgen_test]
+    fn mangan_dealer_ron() {
+        assert_eq!(ron(Score { han: 5, fu: 30 }.points(false, true, false)), 12000);
+    }
+
+    #[wasm_bindgen_test]
+    fn mangan_non_dealer_tsumo() {
+        assert_eq!(tsumo(Score { han: 5, fu: 30 }.points(true, false, false)), [2000, 4000]);
+    }
+
+    #[wasm_bindgen_test]
+    fn mangan_dealer_tsumo() {
+        assert_eq!(tsumo(Score { han: 5, fu: 30 }.points(true, true, false)), [4000, 4000]);
+    }
+
+    #[wasm_bindgen_test]
+    fn haneman_non_dealer_tsumo() {
+        assert_eq!(tsumo(Score { han: 6, fu: 30 }.points(true, false, false)), [3000, 6000]);
+    }
+
+    #[wasm_bindgen_test]
+    fn haneman_dealer_tsumo() {
+        assert_eq!(tsumo(Score { han: 6, fu: 30 }.points(true, true, false)), [6000, 6000]);
+    }
+
+    #[wasm_bindgen_test]
+    fn baiman_non_dealer_tsumo() {
+        assert_eq!(tsumo(Score { han: 8, fu: 30 }.points(true, false, false)), [4000, 8000]);
+    }
+
+    #[wasm_bindgen_test]
+    fn sanbaiman_non_dealer_tsumo() {
+        assert_eq!(tsumo(Score { han: 11, fu: 30 }.points(true, false, false)), [6000, 12000]);
+    }
+
+    #[wasm_bindgen_test]
+    fn yakuman_non_dealer_tsumo() {
+        assert_eq!(tsumo(Score { han: 13, fu: 30 }.points(true, false, false)), [8000, 16000]);
+    }
+
+    #[wasm_bindgen_test]
+    fn kiriage_4han_30fu_is_mangan() {
+        assert_ne!(ron(Score { han: 4, fu: 30 }.points(false, false, false)), 8000);
+        assert_eq!(ron(Score { han: 4, fu: 30 }.points(false, false, true)), 8000);
+    }
+
+    #[wasm_bindgen_test]
+    fn kiriage_3han_60fu_is_mangan() {
+        assert_ne!(ron(Score { han: 3, fu: 60 }.points(false, false, false)), 8000);
+        assert_eq!(ron(Score { han: 3, fu: 60 }.points(false, false, true)), 8000);
+    }
+
+    // --- RonOrTsumo::to_string ---
+
+    #[wasm_bindgen_test]
+    fn ron_to_string() {
+        assert_eq!(RonOrTsumo::Ron(5200).to_string(), "5200");
+    }
+
+    #[wasm_bindgen_test]
+    fn tsumo_all_to_string() {
+        assert_eq!(RonOrTsumo::Tsumo([2600, 2600]).to_string(), "2600\u{a0}all");
+    }
+
+    #[wasm_bindgen_test]
+    fn tsumo_split_to_string() {
+        assert_eq!(RonOrTsumo::Tsumo([1300, 2600]).to_string(), "1300/2600");
+    }
+
+    // --- ciel_100 ---
+
+    #[wasm_bindgen_test]
+    fn ciel_100_already_rounded() {
+        assert_eq!(super::ciel_100(1200), 1200);
+    }
+
+    #[wasm_bindgen_test]
+    fn ciel_100_rounds_up() {
+        assert_eq!(super::ciel_100(1201), 1300);
+        assert_eq!(super::ciel_100(1299), 1300);
+    }
+
+    #[wasm_bindgen_test]
+    fn ciel_100_zero() {
+        assert_eq!(super::ciel_100(0), 0);
     }
 }

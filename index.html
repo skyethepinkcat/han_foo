@@ -11,14 +11,31 @@
     />
   </head>
   <body>
-    <div class="header"><i class="fa fa-gear"></i></div>
+    <div class="header">
+      <span class="clickable" id="options_button"><i class="fa fa-gear"></i></span>
+      <div id="options_menu" class="menu shadow" hidden>
+        <div class="option" title="Enable kiriage mangan" id="kiriage"><input id="kiriage_input" type="checkbox"><label for="kiriage_input">Kiriage</label></div>
+        <fieldset id="mode">
+          <legend>Mode <i title="Sets how often uncommon scores appear." class="fa fa-question-circle"></i></legend>
+          <div class="option" title="All are equal.">
+          <input id="chaos" type="radio" name="mode" value="0.0"><label for="chaos">Chaos</label></input>
+          </div>
+          <div class="option" title="Decent balance.">
+          <input id="normal" type="radio" name="mode" value="0.5" checked><label for="normal">Normal</label></input>
+          </div>
+          <div class="option" title="Raw Tenhou Stats">
+          <input id="unlucky" type="radio" name="mode" value="1.0"><label for="unlucky">Unlucky</label></input>
+          </div>
+          </fieldset>
+      </div>
+    </div>
     <div class="center">
-      <div id="card">
+      <div id="card" class="shadow clickable">
         <div id="front" class="center">
-          <span id="top"
-            ><span id="dealer">NON-DEALER</span> ·
-            <span id="win_type">TSUMO</span></span
-          ><br />
+          <div id="top">
+            <span id="dealer">NON-DEALER</span><span id="win_type">TSUMO</span>
+          </div>
+          <br />
           <span id="bottom"
             ><span id="han_section"><span id="han_count">1</span>han</span
             ><span id="fu_section"><span id="fu_count">30</span>fu</span></span
