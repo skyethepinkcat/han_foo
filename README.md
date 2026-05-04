@@ -1,6 +1,6 @@
 # Han.Foo
 
-The new 🦀 [BLAZINGLY FAST](https://rust-lang.org) 🦀 and ❄️ [REPRODUCIBLE](https://nixos.org/) ❄️ flashcard webapp for memorizing han/foo to point conversions, 100% organic home grown and with options!
+The new 🦀 [BLAZINGLY FAST](https://rust-lang.org) 🦀 and ❄️ [REPRODUCIBLE](https://nixos.org/) ❄️ flashcard webapp for memorizing han/fu to point conversions, 100% organic home grown and with options!
 
 ## Options
 
