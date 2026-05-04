@@ -15,7 +15,7 @@ jobs:
         run: ./.test_version.sh ${GITHUB_REF_NAME}
       - uses: cachix/install-nix-action@v26
       - name: Building package
-        run: nix build --no-link --print-out-paths > store_path.txt
+        run: nix build --offline --no-link --print-out-paths > store_path.txt
       - name: Package as tar.gz
         run: |
           STORE_PATH=$(cat store_path.txt)
