@@ -1,1 +1,1182 @@
-[{"agari":{"score":{"han":3,"fu":40},"dealer":false,"tsumo":false},"count":62449},{"agari":{"score":{"han":4,"fu":30},"dealer":true,"tsumo":false},"count":24826},{"agari":{"score":{"han":1,"fu":40},"dealer":false,"tsumo":true},"count":9724},{"agari":{"score":{"han":3,"fu":30},"dealer":true,"tsumo":true},"count":27653},{"agari":{"score":{"han":4,"fu":30},"dealer":false,"tsumo":true},"count":51803},{"agari":{"score":{"han":4,"fu":30},"dealer":false,"tsumo":false},"count":69519},{"agari":{"score":{"han":5,"fu":20},"dealer":false,"tsumo":true},"count":73350},{"agari":{"score":{"han":1,"fu":30},"dealer":false,"tsumo":true},"count":37070},{"agari":{"score":{"han":2,"fu":40},"dealer":true,"tsumo":false},"count":23556},{"agari":{"score":{"han":3,"fu":30},"dealer":false,"tsumo":false},"count":97633},{"agari":{"score":{"han":2,"fu":30},"dealer":false,"tsumo":false},"count":118381},{"agari":{"score":{"han":2,"fu":30},"dealer":true,"tsumo":true},"count":23346},{"agari":{"score":{"han":3,"fu":30},"dealer":false,"tsumo":true},"count":61154},{"agari":{"score":{"han":7,"fu":20},"dealer":false,"tsumo":true},"count":15947},{"agari":{"score":{"han":2,"fu":30},"dealer":true,"tsumo":false},"count":41295},{"agari":{"score":{"han":9,"fu":20},"dealer":false,"tsumo":true},"count":1887},{"agari":{"score":{"han":1,"fu":30},"dealer":true,"tsumo":true},"count":12451},{"agari":{"score":{"han":2,"fu":30},"dealer":false,"tsumo":true},"count":56911},{"agari":{"score":{"han":2,"fu":40},"dealer":false,"tsumo":false},"count":59889},{"agari":{"score":{"han":3,"fu":30},"dealer":true,"tsumo":false},"count":36991},{"agari":{"score":{"han":5,"fu":20},"dealer":false,"tsumo":false},"count":57108},{"agari":{"score":{"han":4,"fu":25},"dealer":false,"tsumo":false},"count":6112},{"agari":{"score":{"han":1,"fu":30},"dealer":false,"tsumo":false},"count":100862},{"agari":{"score":{"han":1,"fu":30},"dealer":true,"tsumo":false},"count":29288},{"agari":{"score":{"han":1,"fu":50},"dealer":true,"tsumo":false},"count":1090},{"agari":{"score":{"han":6,"fu":20},"dealer":true,"tsumo":true},"count":15530},{"agari":{"score":{"han":3,"fu":20},"dealer":true,"tsumo":true},"count":6031},{"agari":{"score":{"han":6,"fu":20},"dealer":false,"tsumo":true},"count":38755},{"agari":{"score":{"han":1,"fu":40},"dealer":false,"tsumo":false},"count":32821},{"agari":{"score":{"han":4,"fu":30},"dealer":true,"tsumo":true},"count":22318},{"agari":{"score":{"han":3,"fu":25},"dealer":false,"tsumo":true},"count":1053},{"agari":{"score":{"han":5,"fu":20},"dealer":true,"tsumo":true},"count":31322},{"agari":{"score":{"han":3,"fu":25},"dealer":true,"tsumo":false},"count":2017},{"agari":{"score":{"han":4,"fu":50},"dealer":false,"tsumo":true},"count":1783},{"agari":{"score":{"han":1,"fu":40},"dealer":true,"tsumo":true},"count":3270},{"agari":{"score":{"han":4,"fu":40},"dealer":true,"tsumo":false},"count":14854},{"agari":{"score":{"han":7,"fu":20},"dealer":false,"tsumo":false},"count":7483},{"agari":{"score":{"han":4,"fu":20},"dealer":true,"tsumo":true},"count":12883},{"agari":{"score":{"han":5,"fu":20},"dealer":true,"tsumo":false},"count":19858},{"agari":{"score":{"han":3,"fu":40},"dealer":true,"tsumo":false},"count":23861},{"agari":{"score":{"han":6,"fu":20},"dealer":true,"tsumo":false},"count":7654},{"agari":{"score":{"han":4,"fu":50},"dealer":true,"tsumo":false},"count":1436},{"agari":{"score":{"han":2,"fu":25},"dealer":false,"tsumo":false},"count":3034},{"agari":{"score":{"han":6,"fu":20},"dealer":false,"tsumo":false},"count":22472},{"agari":{"score":{"han":4,"fu":50},"dealer":false,"tsumo":false},"count":3909},{"agari":{"score":{"han":4,"fu":40},"dealer":false,"tsumo":false},"count":40419},{"agari":{"score":{"han":8,"fu":20},"dealer":false,"tsumo":false},"count":2413},{"agari":{"score":{"han":2,"fu":40},"dealer":true,"tsumo":true},"count":6269},{"agari":{"score":{"han":1,"fu":40},"dealer":true,"tsumo":false},"count":12218},{"agari":{"score":{"han":7,"fu":20},"dealer":true,"tsumo":true},"count":6065},{"agari":{"score":{"han":3,"fu":60},"dealer":true,"tsumo":false},"count":192},{"agari":{"score":{"han":4,"fu":20},"dealer":false,"tsumo":true},"count":28360},{"agari":{"score":{"han":4,"fu":40},"dealer":true,"tsumo":true},"count":6957},{"agari":{"score":{"han":2,"fu":20},"dealer":false,"tsumo":true},"count":3983},{"agari":{"score":{"han":3,"fu":50},"dealer":false,"tsumo":false},"count":5205},{"agari":{"score":{"han":3,"fu":40},"dealer":false,"tsumo":true},"count":17831},{"agari":{"score":{"han":3,"fu":20},"dealer":false,"tsumo":true},"count":13860},{"agari":{"score":{"han":3,"fu":40},"dealer":true,"tsumo":true},"count":8006},{"agari":{"score":{"han":8,"fu":20},"dealer":false,"tsumo":true},"count":5722},{"agari":{"score":{"han":8,"fu":20},"dealer":true,"tsumo":false},"count":755},{"agari":{"score":{"han":2,"fu":50},"dealer":false,"tsumo":false},"count":4948},{"agari":{"score":{"han":4,"fu":40},"dealer":false,"tsumo":true},"count":16513},{"agari":{"score":{"han":1,"fu":50},"dealer":false,"tsumo":false},"count":2968},{"agari":{"score":{"han":2,"fu":50},"dealer":false,"tsumo":true},"count":1096},{"agari":{"score":{"han":4,"fu":25},"dealer":false,"tsumo":true},"count":2341},{"agari":{"score":{"han":9,"fu":20},"dealer":true,"tsumo":true},"count":740},{"agari":{"score":{"han":7,"fu":20},"dealer":true,"tsumo":false},"count":2478},{"agari":{"score":{"han":2,"fu":40},"dealer":false,"tsumo":true},"count":14729},{"agari":{"score":{"han":4,"fu":50},"dealer":true,"tsumo":true},"count":849},{"agari":{"score":{"han":3,"fu":25},"dealer":false,"tsumo":false},"count":5198},{"agari":{"score":{"han":4,"fu":60},"dealer":false,"tsumo":true},"count":700},{"agari":{"score":{"han":3,"fu":50},"dealer":true,"tsumo":true},"count":780},{"agari":{"score":{"han":3,"fu":70},"dealer":false,"tsumo":false},"count":613},{"agari":{"score":{"han":3,"fu":50},"dealer":true,"tsumo":false},"count":2042},{"agari":{"score":{"han":8,"fu":20},"dealer":true,"tsumo":true},"count":2116},{"agari":{"score":{"han":2,"fu":50},"dealer":true,"tsumo":false},"count":1904},{"agari":{"score":{"han":4,"fu":25},"dealer":true,"tsumo":true},"count":931},{"agari":{"score":{"han":2,"fu":60},"dealer":false,"tsumo":false},"count":488},{"agari":{"score":{"han":3,"fu":25},"dealer":true,"tsumo":true},"count":318},{"agari":{"score":{"han":2,"fu":20},"dealer":true,"tsumo":true},"count":817},{"agari":{"score":{"han":2,"fu":25},"dealer":true,"tsumo":false},"count":834},{"agari":{"score":{"han":1,"fu":50},"dealer":false,"tsumo":true},"count":512},{"agari":{"score":{"han":3,"fu":60},"dealer":false,"tsumo":true},"count":676},{"agari":{"score":{"han":10,"fu":20},"dealer":false,"tsumo":true},"count":573},{"agari":{"score":{"han":3,"fu":60},"dealer":false,"tsumo":false},"count":532},{"agari":{"score":{"han":3,"fu":60},"dealer":true,"tsumo":true},"count":342},{"agari":{"score":{"han":9,"fu":20},"dealer":false,"tsumo":false},"count":732},{"agari":{"score":{"han":2,"fu":60},"dealer":true,"tsumo":false},"count":177},{"agari":{"score":{"han":4,"fu":25},"dealer":true,"tsumo":false},"count":2353},{"agari":{"score":{"han":2,"fu":70},"dealer":false,"tsumo":false},"count":471},{"agari":{"score":{"han":11,"fu":20},"dealer":false,"tsumo":true},"count":167},{"agari":{"score":{"han":4,"fu":60},"dealer":false,"tsumo":false},"count":338},{"agari":{"score":{"han":3,"fu":70},"dealer":true,"tsumo":false},"count":249},{"agari":{"score":{"han":3,"fu":50},"dealer":false,"tsumo":true},"count":1653},{"agari":{"score":{"han":1,"fu":60},"dealer":false,"tsumo":false},"count":254},{"agari":{"score":{"han":1,"fu":70},"dealer":false,"tsumo":false},"count":208},{"agari":{"score":{"han":2,"fu":70},"dealer":true,"tsumo":true},"count":23},{"agari":{"score":{"han":2,"fu":50},"dealer":true,"tsumo":true},"count":555},{"agari":{"score":{"han":10,"fu":20},"dealer":false,"tsumo":false},"count":226},{"agari":{"score":{"han":4,"fu":70},"dealer":false,"tsumo":false},"count":461},{"agari":{"score":{"han":13,"fu":20},"dealer":false,"tsumo":true},"count":28},{"agari":{"score":{"han":4,"fu":70},"dealer":false,"tsumo":true},"count":127},{"agari":{"score":{"han":4,"fu":70},"dealer":true,"tsumo":true},"count":57},{"agari":{"score":{"han":1,"fu":50},"dealer":true,"tsumo":true},"count":230},{"agari":{"score":{"han":2,"fu":60},"dealer":false,"tsumo":true},"count":308},{"agari":{"score":{"han":1,"fu":60},"dealer":false,"tsumo":true},"count":95},{"agari":{"score":{"han":10,"fu":20},"dealer":true,"tsumo":true},"count":202},{"agari":{"score":{"han":1,"fu":70},"dealer":true,"tsumo":false},"count":76},{"agari":{"score":{"han":4,"fu":60},"dealer":true,"tsumo":false},"count":134},{"agari":{"score":{"han":9,"fu":20},"dealer":true,"tsumo":false},"count":255},{"agari":{"score":{"han":4,"fu":70},"dealer":true,"tsumo":false},"count":179},{"agari":{"score":{"han":2,"fu":70},"dealer":true,"tsumo":false},"count":175},{"agari":{"score":{"han":4,"fu":60},"dealer":true,"tsumo":true},"count":341},{"agari":{"score":{"han":2,"fu":60},"dealer":true,"tsumo":true},"count":178},{"agari":{"score":{"han":12,"fu":20},"dealer":true,"tsumo":true},"count":19},{"agari":{"score":{"han":3,"fu":80},"dealer":false,"tsumo":false},"count":39},{"agari":{"score":{"han":3,"fu":70},"dealer":false,"tsumo":true},"count":100},{"agari":{"score":{"han":1,"fu":60},"dealer":true,"tsumo":false},"count":107},{"agari":{"score":{"han":11,"fu":20},"dealer":true,"tsumo":true},"count":65},{"agari":{"score":{"han":1,"fu":80},"dealer":false,"tsumo":false},"count":9},{"agari":{"score":{"han":10,"fu":20},"dealer":true,"tsumo":false},"count":83},{"agari":{"score":{"han":14,"fu":20},"dealer":false,"tsumo":false},"count":5},{"agari":{"score":{"han":3,"fu":80},"dealer":false,"tsumo":true},"count":6},{"agari":{"score":{"han":11,"fu":20},"dealer":false,"tsumo":false},"count":75},{"agari":{"score":{"han":4,"fu":80},"dealer":false,"tsumo":false},"count":33},{"agari":{"score":{"han":3,"fu":80},"dealer":true,"tsumo":true},"count":5},{"agari":{"score":{"han":11,"fu":20},"dealer":true,"tsumo":false},"count":18},{"agari":{"score":{"han":4,"fu":80},"dealer":true,"tsumo":false},"count":11},{"agari":{"score":{"han":3,"fu":70},"dealer":true,"tsumo":true},"count":51},{"agari":{"score":{"han":2,"fu":80},"dealer":true,"tsumo":false},"count":14},{"agari":{"score":{"han":12,"fu":20},"dealer":false,"tsumo":false},"count":19},{"agari":{"score":{"han":1,"fu":70},"dealer":false,"tsumo":true},"count":22},{"agari":{"score":{"han":12,"fu":20},"dealer":false,"tsumo":true},"count":78},{"agari":{"score":{"han":2,"fu":70},"dealer":false,"tsumo":true},"count":52},{"agari":{"score":{"han":4,"fu":80},"dealer":false,"tsumo":true},"count":8},{"agari":{"score":{"han":14,"fu":20},"dealer":true,"tsumo":true},"count":7},{"agari":{"score":{"han":4,"fu":90},"dealer":false,"tsumo":true},"count":1},{"agari":{"score":{"han":12,"fu":20},"dealer":true,"tsumo":false},"count":6},{"agari":{"score":{"han":1,"fu":80},"dealer":false,"tsumo":true},"count":1},{"agari":{"score":{"han":13,"fu":20},"dealer":false,"tsumo":false},"count":15},{"agari":{"score":{"han":13,"fu":20},"dealer":true,"tsumo":true},"count":3},{"agari":{"score":{"han":1,"fu":60},"dealer":true,"tsumo":true},"count":58},{"agari":{"score":{"han":2,"fu":80},"dealer":false,"tsumo":false},"count":27},{"agari":{"score":{"han":2,"fu":90},"dealer":true,"tsumo":false},"count":2},{"agari":{"score":{"han":1,"fu":70},"dealer":true,"tsumo":true},"count":5},{"agari":{"score":{"han":13,"fu":20},"dealer":true,"tsumo":false},"count":4},{"agari":{"score":{"han":14,"fu":20},"dealer":false,"tsumo":true},"count":4},{"agari":{"score":{"han":3,"fu":80},"dealer":true,"tsumo":false},"count":8},{"agari":{"score":{"han":3,"fu":90},"dealer":true,"tsumo":true},"count":1},{"agari":{"score":{"han":2,"fu":90},"dealer":false,"tsumo":false},"count":1},{"agari":{"score":{"han":4,"fu":80},"dealer":true,"tsumo":true},"count":3},{"agari":{"score":{"han":4,"fu":100},"dealer":false,"tsumo":false},"count":1},{"agari":{"score":{"han":4,"fu":90},"dealer":true,"tsumo":true},"count":1},{"agari":{"score":{"han":17,"fu":20},"dealer":true,"tsumo":true},"count":1},{"agari":{"score":{"han":2,"fu":80},"dealer":false,"tsumo":true},"count":6},{"agari":{"score":{"han":14,"fu":20},"dealer":true,"tsumo":false},"count":2},{"agari":{"score":{"han":3,"fu":90},"dealer":false,"tsumo":true},"count":1},{"agari":{"score":{"han":1,"fu":80},"dealer":true,"tsumo":false},"count":7},{"agari":{"score":{"han":15,"fu":20},"dealer":false,"tsumo":true},"count":3},{"agari":{"score":{"han":2,"fu":80},"dealer":true,"tsumo":true},"count":1},{"agari":{"score":{"han":2,"fu":100},"dealer":true,"tsumo":false},"count":2},{"agari":{"score":{"han":4,"fu":90},"dealer":false,"tsumo":false},"count":2},{"agari":{"score":{"han":15,"fu":20},"dealer":true,"tsumo":true},"count":1},{"agari":{"score":{"han":2,"fu":100},"dealer":false,"tsumo":false},"count":1},{"agari":{"score":{"han":3,"fu":90},"dealer":false,"tsumo":false},"count":2}]
+[
+  {
+    "agari": {
+      "score": { "han": 3, "fu": 40 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 62449
+  },
+  {
+    "agari": {
+      "score": { "han": 4, "fu": 30 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 24826
+  },
+  {
+    "agari": {
+      "score": { "han": 1, "fu": 40 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 9724
+  },
+  {
+    "agari": { "score": { "han": 3, "fu": 30 }, "dealer": true, "tsumo": true },
+    "count": 27653
+  },
+  {
+    "agari": {
+      "score": { "han": 4, "fu": 30 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 51803
+  },
+  {
+    "agari": {
+      "score": { "han": 4, "fu": 30 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 69519
+  },
+  {
+    "agari": {
+      "score": { "han": 5, "fu": 20 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 73350
+  },
+  {
+    "agari": {
+      "score": { "han": 1, "fu": 30 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 37070
+  },
+  {
+    "agari": {
+      "score": { "han": 2, "fu": 40 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 23556
+  },
+  {
+    "agari": {
+      "score": { "han": 3, "fu": 30 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 97633
+  },
+  {
+    "agari": {
+      "score": { "han": 2, "fu": 30 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 118381
+  },
+  {
+    "agari": { "score": { "han": 2, "fu": 30 }, "dealer": true, "tsumo": true },
+    "count": 23346
+  },
+  {
+    "agari": {
+      "score": { "han": 3, "fu": 30 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 61154
+  },
+  {
+    "agari": {
+      "score": { "han": 7, "fu": 20 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 15947
+  },
+  {
+    "agari": {
+      "score": { "han": 2, "fu": 30 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 41295
+  },
+  {
+    "agari": {
+      "score": { "han": 9, "fu": 20 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 1887
+  },
+  {
+    "agari": { "score": { "han": 1, "fu": 30 }, "dealer": true, "tsumo": true },
+    "count": 12451
+  },
+  {
+    "agari": {
+      "score": { "han": 2, "fu": 30 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 56911
+  },
+  {
+    "agari": {
+      "score": { "han": 2, "fu": 40 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 59889
+  },
+  {
+    "agari": {
+      "score": { "han": 3, "fu": 30 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 36991
+  },
+  {
+    "agari": {
+      "score": { "han": 5, "fu": 20 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 57108
+  },
+  {
+    "agari": {
+      "score": { "han": 4, "fu": 25 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 6112
+  },
+  {
+    "agari": {
+      "score": { "han": 1, "fu": 30 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 100862
+  },
+  {
+    "agari": {
+      "score": { "han": 1, "fu": 30 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 29288
+  },
+  {
+    "agari": {
+      "score": { "han": 1, "fu": 50 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 1090
+  },
+  {
+    "agari": { "score": { "han": 6, "fu": 20 }, "dealer": true, "tsumo": true },
+    "count": 15530
+  },
+  {
+    "agari": { "score": { "han": 3, "fu": 20 }, "dealer": true, "tsumo": true },
+    "count": 6031
+  },
+  {
+    "agari": {
+      "score": { "han": 6, "fu": 20 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 38755
+  },
+  {
+    "agari": {
+      "score": { "han": 1, "fu": 40 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 32821
+  },
+  {
+    "agari": { "score": { "han": 4, "fu": 30 }, "dealer": true, "tsumo": true },
+    "count": 22318
+  },
+  {
+    "agari": {
+      "score": { "han": 3, "fu": 25 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 1053
+  },
+  {
+    "agari": { "score": { "han": 5, "fu": 20 }, "dealer": true, "tsumo": true },
+    "count": 31322
+  },
+  {
+    "agari": {
+      "score": { "han": 3, "fu": 25 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 2017
+  },
+  {
+    "agari": {
+      "score": { "han": 4, "fu": 50 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 1783
+  },
+  {
+    "agari": { "score": { "han": 1, "fu": 40 }, "dealer": true, "tsumo": true },
+    "count": 3270
+  },
+  {
+    "agari": {
+      "score": { "han": 4, "fu": 40 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 14854
+  },
+  {
+    "agari": {
+      "score": { "han": 7, "fu": 20 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 7483
+  },
+  {
+    "agari": { "score": { "han": 4, "fu": 20 }, "dealer": true, "tsumo": true },
+    "count": 12883
+  },
+  {
+    "agari": {
+      "score": { "han": 5, "fu": 20 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 19858
+  },
+  {
+    "agari": {
+      "score": { "han": 3, "fu": 40 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 23861
+  },
+  {
+    "agari": {
+      "score": { "han": 6, "fu": 20 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 7654
+  },
+  {
+    "agari": {
+      "score": { "han": 4, "fu": 50 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 1436
+  },
+  {
+    "agari": {
+      "score": { "han": 2, "fu": 25 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 3034
+  },
+  {
+    "agari": {
+      "score": { "han": 6, "fu": 20 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 22472
+  },
+  {
+    "agari": {
+      "score": { "han": 4, "fu": 50 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 3909
+  },
+  {
+    "agari": {
+      "score": { "han": 4, "fu": 40 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 40419
+  },
+  {
+    "agari": {
+      "score": { "han": 8, "fu": 20 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 2413
+  },
+  {
+    "agari": { "score": { "han": 2, "fu": 40 }, "dealer": true, "tsumo": true },
+    "count": 6269
+  },
+  {
+    "agari": {
+      "score": { "han": 1, "fu": 40 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 12218
+  },
+  {
+    "agari": { "score": { "han": 7, "fu": 20 }, "dealer": true, "tsumo": true },
+    "count": 6065
+  },
+  {
+    "agari": {
+      "score": { "han": 3, "fu": 60 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 192
+  },
+  {
+    "agari": {
+      "score": { "han": 4, "fu": 20 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 28360
+  },
+  {
+    "agari": { "score": { "han": 4, "fu": 40 }, "dealer": true, "tsumo": true },
+    "count": 6957
+  },
+  {
+    "agari": {
+      "score": { "han": 2, "fu": 20 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 3983
+  },
+  {
+    "agari": {
+      "score": { "han": 3, "fu": 50 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 5205
+  },
+  {
+    "agari": {
+      "score": { "han": 3, "fu": 40 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 17831
+  },
+  {
+    "agari": {
+      "score": { "han": 3, "fu": 20 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 13860
+  },
+  {
+    "agari": { "score": { "han": 3, "fu": 40 }, "dealer": true, "tsumo": true },
+    "count": 8006
+  },
+  {
+    "agari": {
+      "score": { "han": 8, "fu": 20 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 5722
+  },
+  {
+    "agari": {
+      "score": { "han": 8, "fu": 20 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 755
+  },
+  {
+    "agari": {
+      "score": { "han": 2, "fu": 50 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 4948
+  },
+  {
+    "agari": {
+      "score": { "han": 4, "fu": 40 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 16513
+  },
+  {
+    "agari": {
+      "score": { "han": 1, "fu": 50 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 2968
+  },
+  {
+    "agari": {
+      "score": { "han": 2, "fu": 50 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 1096
+  },
+  {
+    "agari": {
+      "score": { "han": 4, "fu": 25 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 2341
+  },
+  {
+    "agari": { "score": { "han": 9, "fu": 20 }, "dealer": true, "tsumo": true },
+    "count": 740
+  },
+  {
+    "agari": {
+      "score": { "han": 7, "fu": 20 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 2478
+  },
+  {
+    "agari": {
+      "score": { "han": 2, "fu": 40 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 14729
+  },
+  {
+    "agari": { "score": { "han": 4, "fu": 50 }, "dealer": true, "tsumo": true },
+    "count": 849
+  },
+  {
+    "agari": {
+      "score": { "han": 3, "fu": 25 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 5198
+  },
+  {
+    "agari": {
+      "score": { "han": 4, "fu": 60 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 700
+  },
+  {
+    "agari": { "score": { "han": 3, "fu": 50 }, "dealer": true, "tsumo": true },
+    "count": 780
+  },
+  {
+    "agari": {
+      "score": { "han": 3, "fu": 70 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 613
+  },
+  {
+    "agari": {
+      "score": { "han": 3, "fu": 50 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 2042
+  },
+  {
+    "agari": { "score": { "han": 8, "fu": 20 }, "dealer": true, "tsumo": true },
+    "count": 2116
+  },
+  {
+    "agari": {
+      "score": { "han": 2, "fu": 50 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 1904
+  },
+  {
+    "agari": { "score": { "han": 4, "fu": 25 }, "dealer": true, "tsumo": true },
+    "count": 931
+  },
+  {
+    "agari": {
+      "score": { "han": 2, "fu": 60 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 488
+  },
+  {
+    "agari": { "score": { "han": 3, "fu": 25 }, "dealer": true, "tsumo": true },
+    "count": 318
+  },
+  {
+    "agari": { "score": { "han": 2, "fu": 20 }, "dealer": true, "tsumo": true },
+    "count": 817
+  },
+  {
+    "agari": {
+      "score": { "han": 2, "fu": 25 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 834
+  },
+  {
+    "agari": {
+      "score": { "han": 1, "fu": 50 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 512
+  },
+  {
+    "agari": {
+      "score": { "han": 3, "fu": 60 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 676
+  },
+  {
+    "agari": {
+      "score": { "han": 10, "fu": 20 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 573
+  },
+  {
+    "agari": {
+      "score": { "han": 3, "fu": 60 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 532
+  },
+  {
+    "agari": { "score": { "han": 3, "fu": 60 }, "dealer": true, "tsumo": true },
+    "count": 342
+  },
+  {
+    "agari": {
+      "score": { "han": 9, "fu": 20 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 732
+  },
+  {
+    "agari": {
+      "score": { "han": 2, "fu": 60 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 177
+  },
+  {
+    "agari": {
+      "score": { "han": 4, "fu": 25 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 2353
+  },
+  {
+    "agari": {
+      "score": { "han": 2, "fu": 70 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 471
+  },
+  {
+    "agari": {
+      "score": { "han": 11, "fu": 20 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 167
+  },
+  {
+    "agari": {
+      "score": { "han": 4, "fu": 60 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 338
+  },
+  {
+    "agari": {
+      "score": { "han": 3, "fu": 70 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 249
+  },
+  {
+    "agari": {
+      "score": { "han": 3, "fu": 50 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 1653
+  },
+  {
+    "agari": {
+      "score": { "han": 1, "fu": 60 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 254
+  },
+  {
+    "agari": {
+      "score": { "han": 1, "fu": 70 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 208
+  },
+  {
+    "agari": { "score": { "han": 2, "fu": 70 }, "dealer": true, "tsumo": true },
+    "count": 23
+  },
+  {
+    "agari": { "score": { "han": 2, "fu": 50 }, "dealer": true, "tsumo": true },
+    "count": 555
+  },
+  {
+    "agari": {
+      "score": { "han": 10, "fu": 20 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 226
+  },
+  {
+    "agari": {
+      "score": { "han": 4, "fu": 70 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 461
+  },
+  {
+    "agari": {
+      "score": { "han": 13, "fu": 20 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 28
+  },
+  {
+    "agari": {
+      "score": { "han": 4, "fu": 70 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 127
+  },
+  {
+    "agari": { "score": { "han": 4, "fu": 70 }, "dealer": true, "tsumo": true },
+    "count": 57
+  },
+  {
+    "agari": { "score": { "han": 1, "fu": 50 }, "dealer": true, "tsumo": true },
+    "count": 230
+  },
+  {
+    "agari": {
+      "score": { "han": 2, "fu": 60 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 308
+  },
+  {
+    "agari": {
+      "score": { "han": 1, "fu": 60 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 95
+  },
+  {
+    "agari": {
+      "score": { "han": 10, "fu": 20 },
+      "dealer": true,
+      "tsumo": true
+    },
+    "count": 202
+  },
+  {
+    "agari": {
+      "score": { "han": 1, "fu": 70 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 76
+  },
+  {
+    "agari": {
+      "score": { "han": 4, "fu": 60 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 134
+  },
+  {
+    "agari": {
+      "score": { "han": 9, "fu": 20 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 255
+  },
+  {
+    "agari": {
+      "score": { "han": 4, "fu": 70 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 179
+  },
+  {
+    "agari": {
+      "score": { "han": 2, "fu": 70 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 175
+  },
+  {
+    "agari": { "score": { "han": 4, "fu": 60 }, "dealer": true, "tsumo": true },
+    "count": 341
+  },
+  {
+    "agari": { "score": { "han": 2, "fu": 60 }, "dealer": true, "tsumo": true },
+    "count": 178
+  },
+  {
+    "agari": {
+      "score": { "han": 12, "fu": 20 },
+      "dealer": true,
+      "tsumo": true
+    },
+    "count": 19
+  },
+  {
+    "agari": {
+      "score": { "han": 3, "fu": 80 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 39
+  },
+  {
+    "agari": {
+      "score": { "han": 3, "fu": 70 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 100
+  },
+  {
+    "agari": {
+      "score": { "han": 1, "fu": 60 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 107
+  },
+  {
+    "agari": {
+      "score": { "han": 11, "fu": 20 },
+      "dealer": true,
+      "tsumo": true
+    },
+    "count": 65
+  },
+  {
+    "agari": {
+      "score": { "han": 1, "fu": 80 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 9
+  },
+  {
+    "agari": {
+      "score": { "han": 10, "fu": 20 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 83
+  },
+  {
+    "agari": {
+      "score": { "han": 14, "fu": 20 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 5
+  },
+  {
+    "agari": {
+      "score": { "han": 3, "fu": 80 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 6
+  },
+  {
+    "agari": {
+      "score": { "han": 11, "fu": 20 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 75
+  },
+  {
+    "agari": {
+      "score": { "han": 4, "fu": 80 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 33
+  },
+  {
+    "agari": { "score": { "han": 3, "fu": 80 }, "dealer": true, "tsumo": true },
+    "count": 5
+  },
+  {
+    "agari": {
+      "score": { "han": 11, "fu": 20 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 18
+  },
+  {
+    "agari": {
+      "score": { "han": 4, "fu": 80 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 11
+  },
+  {
+    "agari": { "score": { "han": 3, "fu": 70 }, "dealer": true, "tsumo": true },
+    "count": 51
+  },
+  {
+    "agari": {
+      "score": { "han": 2, "fu": 80 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 14
+  },
+  {
+    "agari": {
+      "score": { "han": 12, "fu": 20 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 19
+  },
+  {
+    "agari": {
+      "score": { "han": 1, "fu": 70 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 22
+  },
+  {
+    "agari": {
+      "score": { "han": 12, "fu": 20 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 78
+  },
+  {
+    "agari": {
+      "score": { "han": 2, "fu": 70 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 52
+  },
+  {
+    "agari": {
+      "score": { "han": 4, "fu": 80 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 8
+  },
+  {
+    "agari": {
+      "score": { "han": 14, "fu": 20 },
+      "dealer": true,
+      "tsumo": true
+    },
+    "count": 7
+  },
+  {
+    "agari": {
+      "score": { "han": 4, "fu": 90 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 1
+  },
+  {
+    "agari": {
+      "score": { "han": 12, "fu": 20 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 6
+  },
+  {
+    "agari": {
+      "score": { "han": 1, "fu": 80 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 1
+  },
+  {
+    "agari": {
+      "score": { "han": 13, "fu": 20 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 15
+  },
+  {
+    "agari": {
+      "score": { "han": 13, "fu": 20 },
+      "dealer": true,
+      "tsumo": true
+    },
+    "count": 3
+  },
+  {
+    "agari": { "score": { "han": 1, "fu": 60 }, "dealer": true, "tsumo": true },
+    "count": 58
+  },
+  {
+    "agari": {
+      "score": { "han": 2, "fu": 80 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 27
+  },
+  {
+    "agari": {
+      "score": { "han": 2, "fu": 90 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 2
+  },
+  {
+    "agari": { "score": { "han": 1, "fu": 70 }, "dealer": true, "tsumo": true },
+    "count": 5
+  },
+  {
+    "agari": {
+      "score": { "han": 13, "fu": 20 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 4
+  },
+  {
+    "agari": {
+      "score": { "han": 14, "fu": 20 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 4
+  },
+  {
+    "agari": {
+      "score": { "han": 3, "fu": 80 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 8
+  },
+  {
+    "agari": { "score": { "han": 3, "fu": 90 }, "dealer": true, "tsumo": true },
+    "count": 1
+  },
+  {
+    "agari": {
+      "score": { "han": 2, "fu": 90 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 1
+  },
+  {
+    "agari": { "score": { "han": 4, "fu": 80 }, "dealer": true, "tsumo": true },
+    "count": 3
+  },
+  {
+    "agari": {
+      "score": { "han": 4, "fu": 100 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 1
+  },
+  {
+    "agari": { "score": { "han": 4, "fu": 90 }, "dealer": true, "tsumo": true },
+    "count": 1
+  },
+  {
+    "agari": {
+      "score": { "han": 17, "fu": 20 },
+      "dealer": true,
+      "tsumo": true
+    },
+    "count": 1
+  },
+  {
+    "agari": {
+      "score": { "han": 2, "fu": 80 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 6
+  },
+  {
+    "agari": {
+      "score": { "han": 14, "fu": 20 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 2
+  },
+  {
+    "agari": {
+      "score": { "han": 3, "fu": 90 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 1
+  },
+  {
+    "agari": {
+      "score": { "han": 1, "fu": 80 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 7
+  },
+  {
+    "agari": {
+      "score": { "han": 15, "fu": 20 },
+      "dealer": false,
+      "tsumo": true
+    },
+    "count": 3
+  },
+  {
+    "agari": { "score": { "han": 2, "fu": 80 }, "dealer": true, "tsumo": true },
+    "count": 1
+  },
+  {
+    "agari": {
+      "score": { "han": 2, "fu": 100 },
+      "dealer": true,
+      "tsumo": false
+    },
+    "count": 2
+  },
+  {
+    "agari": {
+      "score": { "han": 4, "fu": 90 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 2
+  },
+  {
+    "agari": {
+      "score": { "han": 15, "fu": 20 },
+      "dealer": true,
+      "tsumo": true
+    },
+    "count": 1
+  },
+  {
+    "agari": {
+      "score": { "han": 2, "fu": 100 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 1
+  },
+  {
+    "agari": {
+      "score": { "han": 3, "fu": 90 },
+      "dealer": false,
+      "tsumo": false
+    },
+    "count": 2
+  }
+]

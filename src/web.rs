@@ -308,7 +308,6 @@ impl State {
         let last = self.agari;
         self.agari = hf::random_agari(&mut self.rng, self.options.random_param);
 
-
         debug_log!(format!(
             "Generated {:?} with {}",
             self.agari, self.options.random_param
