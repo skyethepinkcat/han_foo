@@ -34,6 +34,7 @@ h3 {
 .clickable {
   cursor: pointer;
 }
+
 #card {
   text-align: center;
 
@@ -50,7 +51,7 @@ h3 {
 }
 
 .shadow {
-  box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.5);
+  filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, 0.5));
 }
 
 #bottom {
@@ -173,7 +174,7 @@ input {
   padding-left: 10px;
 }
 
-#mode > .option {
+#mode>.option {
   justify-content: flex-start;
   font-size: smaller;
   padding-top: 0px;
@@ -185,6 +186,7 @@ input {
 .fa-question-circle {
   transform: scale(0.75);
 }
+
 .menu[hidden] {
   display: none;
 }
