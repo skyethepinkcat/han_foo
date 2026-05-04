@@ -21,6 +21,7 @@ pub struct Agari {
 
 impl Agari {
     /// Creates a new [`Agari`].
+    #[allow(dead_code)]
     pub fn new(score: Score, dealer: bool, tsumo: bool) -> Self {
         Self {
             score,
