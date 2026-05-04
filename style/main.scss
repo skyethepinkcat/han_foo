@@ -146,6 +146,7 @@ h3 {
 }
 
 .menu {
+
   background-color: var(--card-bg);
   border-radius: 5px;
   border: 1px solid var(--text-main);
@@ -169,11 +170,16 @@ input {
 }
 
 #mode {
+  display: flex;
   flex-direction: column;
   text-align: left;
   padding-left: 10px;
 }
 
+
+#mode>legend {
+  text-align: center;
+}
 #mode>.option {
   justify-content: flex-start;
   font-size: smaller;
@@ -181,6 +187,7 @@ input {
   padding-bottom: 0px;
   padding-right: 0px;
   padding-left: 5px;
+  align-items: center;
 }
 
 .fa-question-circle {
@@ -188,5 +195,5 @@ input {
 }
 
 .menu[hidden] {
-  display: none;
+  visibility: hidden;
 }
