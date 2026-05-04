@@ -293,11 +293,8 @@ impl State {
                 kiriage: true,
                 random_param: DEFAULT_PARAM,
             },
-            agari: Agari::new(
-                hf::random_score(&mut rng, DEFAULT_PARAM),
-                rng.random_bool(0.5),
-                rng.random_bool(0.5),
-            ),
+            agari: hf::random_agari(&mut rng, DEFAULT_PARAM),
+
             rng,
         };
 
@@ -309,11 +306,8 @@ impl State {
 
     pub fn generate(&mut self) {
         let last = self.agari;
-        self.agari = Agari::new(
-            hf::random_score(&mut self.rng, self.options.random_param),
-            self.rng.random_bool(0.5),
-            self.rng.random_bool(0.5),
-        );
+        self.agari = hf::random_agari(&mut self.rng, self.options.random_param);
+
 
         debug_log!(format!(
             "Generated {:?} with {}",

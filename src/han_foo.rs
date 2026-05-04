@@ -8,11 +8,11 @@ use crate::debug_log;
 #[cfg(debug_assertions)]
 use web_sys::console;
 
-static RAW_SCORES_STRING: &str = include_str!("../assets/score_probabilities.json");
+static RAW_SCORES_STRING: &str = include_str!("../assets/score_probabilities_limitcombined.json");
 static RAW_PROBABILITIES: LazyLock<Vec<RawProbability>> =
     LazyLock::new(|| serde_json::from_str(RAW_SCORES_STRING).unwrap());
 
-#[derive(Debug, Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq, Deserialize, Serialize)]
 pub struct Agari {
     pub score: Score,
     pub dealer: bool,
@@ -21,7 +21,6 @@ pub struct Agari {
 
 impl Agari {
     /// Creates a new [`Agari`].
-    /// kiriage defaults to bool
     pub fn new(score: Score, dealer: bool, tsumo: bool) -> Self {
         Self {
             score,
@@ -48,7 +47,7 @@ pub fn get_probabilities(param: f32) -> Vec<Probability> {
 
     for raw in (*RAW_PROBABILITIES).iter() {
         out.push(Probability {
-            score: raw.score,
+            agari: raw.agari,
             probability: (raw.count as f32).powf(param),
         });
     }
@@ -56,7 +55,7 @@ pub fn get_probabilities(param: f32) -> Vec<Probability> {
     out
 }
 
-pub fn random_score(rng: &mut impl Rng, param: f32) -> Score {
+pub fn random_agari(rng: &mut impl Rng, param: f32) -> Agari {
     let probs = get_probabilities(param);
     let mut total: f32 = 0.0;
     for p in &probs {
@@ -69,23 +68,23 @@ pub fn random_score(rng: &mut impl Rng, param: f32) -> Score {
     for s in &probs {
         let weight = s.probability;
         if roll < weight {
-            return s.score;
+            return s.agari;
         }
         roll -= weight;
     }
 
-    probs.last().unwrap().score
+    probs.last().unwrap().agari
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, Copy)]
 pub struct Probability {
-    pub score: Score,
+    pub agari: Agari,
     pub probability: f32,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, Copy)]
 pub struct RawProbability {
-    pub score: Score,
+    pub agari: Agari,
     pub count: u32,
 }
 

@@ -58,8 +58,8 @@ This is for masochists only get that container shit outta here we use nix in thi
 
 ## TODO
 
-- [ ] Consider all limit wins to be the same regardless of fu
-- [ ] Factor tsumo and dealer into odds
+- [x] Consider all limit wins to be the same regardless of fu
+- [x] Factor tsumo and dealer into odds
 - [ ] Allow user to make individual scores less likely to appear
 
 ## FAQ
