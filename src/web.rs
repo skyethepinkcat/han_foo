@@ -317,12 +317,6 @@ impl State {
         if self.agari == last {
             self.generate();
         }
-        // Re-roll scores that aren't possible.
-        if (self.agari.score.fu == 20 && !self.agari.tsumo)
-            || self.agari.score.fu == 25 && self.agari.score.han == 2 && self.agari.tsumo
-        {
-            self.generate();
-        }
     }
 
     pub fn menu(&self) -> &Menu {
