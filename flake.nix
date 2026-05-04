@@ -96,6 +96,7 @@
           commonArgs
           // {
             inherit cargoArtifacts;
+            trunkExtraBuildArgs = "--public-url=./";
             # The version of wasm-bindgen-cli here must match the one from Cargo.lock.
             wasm-bindgen-cli = pkgs.wasm-bindgen-cli_0_2_114;
           }
