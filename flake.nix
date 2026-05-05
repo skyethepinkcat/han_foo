@@ -162,6 +162,7 @@
             trunk
             cargo-mommy
             rust-analyzer
+            cargo-bump
           ];
         };
       }
